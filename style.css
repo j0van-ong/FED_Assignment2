@@ -102,7 +102,6 @@
     float: left;
     padding-left: 2%;
     width: 100%;
-    opacity: 0;
 }
 /*selecting go before proceeding to the main game*/
 .main-screenpg #enter-game-submission .enteruserform input[type=text], select{
