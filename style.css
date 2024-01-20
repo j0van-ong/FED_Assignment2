@@ -60,7 +60,7 @@
     width: 60%;
     padding-left: 2%;
     height: 90vh;
-    margin-top: 100px; /*spacing from top to centralise*/
+    padding-top: 100px; /*spacing from top to centralise*/
 }
 
 .main-screenpg .game-intro-left .game-intro-text{
@@ -76,7 +76,7 @@
     padding: 14px 20px; /*top-bot, l-r*/
     width: 30%;
     margin: 5% 0;
-    border: 10px black;
+    border: 1px solid #202020;
     border-radius: 25px;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
@@ -95,4 +95,41 @@
     background-image: url(./Picture/emoji-lightbulb-removebg-preview.png);
     background-size: cover;
     height: 90vh;
+}
+
+/*this section contains the form to get username confirmation, hidden at first*/
+.main-screenpg #enter-game-submission{
+    float: left;
+    padding-left: 2%;
+    width: 100%;
+    opacity: 0;
+}
+/*selecting go before proceeding to the main game*/
+.main-screenpg #enter-game-submission .enteruserform input[type=text], select{
+    width: 50%;
+    padding: 10px 12px; /*this adds spaces within the textbox*/
+    margin-left: 20px;
+    display: inline-block; /*able to apply width and padding to this input box*/
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/*Username input text before selecting go*/
+.main-screenpg #enter-game-submission .enteruserform .submit-givenUser{
+    width: 10%;
+    background-color: rgb(15, 175, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    padding: 10px 12px;
+    border: 1px solid green;
+    display: inline-block;
+    margin-left: 50px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer; 
+}
+
+.main-screenpg #enter-game-submission .enteruserform .submit-givenUser:hover{
+    background-color: green;
 }
