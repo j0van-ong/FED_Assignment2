@@ -1,3 +1,4 @@
+/*A container to hold entire code, this changes the background for entire screen*/
 .indexMainwrapper{
     background-image: url(./Picture/bg-orangeyellow.jpg);
     background-size: cover;
@@ -26,7 +27,6 @@
 .main-screenpg header nav{
     text-align: right; /*asside nav bar to the right*/
     margin-right: 2%;
-    margin-bottom: 20px;
     margin-top: 30px;
     width:66%;
     float: left;
@@ -53,14 +53,20 @@
 }
 .main-screenpg .game-info-container{
     width: 100%;
-    height: 90vh;
+    height: 95vh;
 }
 .main-screenpg .game-intro-left{
     float: left;
-    width: 60%;
+    width: 63%;
     padding-left: 2%;
-    height: 90vh;
-    padding-top: 100px; /*spacing from top to centralise*/
+    height: 95vh;
+    padding-top: 10px; /*spacing from top to centralise*/
+}
+
+.main-screenpg .game-intro-left .lottiemainpg{
+    display: inline-block; /*align on the same line with img*/
+    position: relative; 
+    top: 90px /*allows it to be placed from a top distance with relative*/
 }
 
 .main-screenpg .game-intro-left .game-intro-text{
@@ -71,7 +77,7 @@
     word-spacing: 2px;
     color:white;
 }
-
+/*Play now button styling*/
 .main-screenpg .game-intro-left button{
     padding: 14px 20px; /*top-bot, l-r*/
     width: 30%;
@@ -84,6 +90,7 @@
     color: black;
     font-size: 18px;
 }
+/*Play now button hovering effect*/
 .main-screenpg .game-intro-left button:hover{
     transition: 1s;
     color: white;
@@ -91,10 +98,10 @@
 }
 .main-screenpg .game-info-container .game-intro-right{
     float: left;
-    width: 38%;
+    width: 35%;
     background-image: url(./Picture/emoji-lightbulb-removebg-preview.png);
     background-size: cover;
-    height: 90vh;
+    height: 95vh;
 }
 
 /*this section contains the form to get username confirmation, hidden at first*/
@@ -102,6 +109,7 @@
     float: left;
     padding-left: 2%;
     width: 100%;
+    margin-top: 0;
 }
 /*selecting go before proceeding to the main game*/
 .main-screenpg #enter-game-submission .enteruserform input[type=text], select{
@@ -109,12 +117,14 @@
     padding: 10px 12px; /*this adds spaces within the textbox*/
     margin-left: 20px;
     display: inline-block; /*able to apply width and padding to this input box*/
-    border: 1px solid #ccc;
+    border: 1px solid #101010;
     border-radius: 4px;
     box-sizing: border-box;
 }
-
-/*Username input text before selecting go*/
+.main-screenpg #enter-game-submission .enteruserform select{
+    margin-left: 11%; /*align with username form */
+}
+/*selecting go button*/
 .main-screenpg #enter-game-submission .enteruserform .submit-givenUser{
     width: 10%;
     background-color: rgb(15, 175, 0);
@@ -128,7 +138,139 @@
     border-radius: 4px;
     cursor: pointer; 
 }
-
+/*Hovering for button go*/
 .main-screenpg #enter-game-submission .enteruserform .submit-givenUser:hover{
     background-color: green;
+}
+
+/*START OF INGAME.HTML CSS*/
+.inGameMainwrapper{ /*Same background pic but for ingame.html*/
+    background-image: url(./Picture/bg-orangeyellow.jpg);
+    background-size: cover;
+}
+
+/*This sets the display size, the full screen of the computer*/
+.main-screenpg .ingame-screen {
+    width: 100%;
+    height: 95vh;
+    margin-top: 10px;
+}
+
+/*left container for the display*/
+.main-screenpg .ingame-screen .ingame-left{
+    float: left;
+    width: 63%;
+    padding-left: 2%;
+    height: 95vh;
+    padding-top: 10px; /*spacing from top to centralise*/
+}
+
+.main-screenpg .ingame-screen .ingame-left #timerid{
+    padding: 10px 12px; /*top-bot, left-right */
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid white;
+    width: 15%;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    font-size: 20px; 
+}
+
+.main-screenpg .ingame-screen .ingame-left .question-display {
+    margin-top: 10px;
+    height: 450px;
+    background-color: white;
+    width: 100%;
+    border: 2.5px solid black;
+    border-radius: 10px;
+}
+
+.main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form {
+    float: left;
+    padding-left: 2%;
+    width: 100%;
+    margin-top: 0;
+}
+
+.main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form input[type=text], select{
+    margin-top: 20px;
+    width: 40%;
+    padding: 10px 12px; /*this adds spaces within the textbox*/
+    display: inline-block; /*able to apply width and padding to this input box*/
+    border: 1px solid #000000;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form .submit-answer{
+    width: 10%;
+    background-color: rgb(15, 175, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    padding: 10px 12px;
+    border: 1px solid green;
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer; 
+}
+
+.main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form .submit-answer:hover {
+    background-color: green;
+}
+
+/*right container for the display*/
+.main-screenpg .ingame-screen .ingame-right{
+    float: left;
+    width: 35%;
+    padding-left: 2%;
+    height: 95vh;
+}
+
+.main-screenpg .ingame-screen .ingame-right .right-banner{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 90vh;
+}
+
+.main-screenpg .ingame-screen .ingame-right .right-banner .game-features{
+    width: 100%;
+    border-radius: 10px;
+    padding: 8px 10px;
+    background-color: rgb(0, 0, 0);
+    border: 3px solid white;
+}
+
+.main-screenpg .ingame-screen .ingame-right .right-banner .game-features .status{
+    margin-top: 5px;
+    margin-left: 5px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.main-screenpg .ingame-screen .ingame-right .right-banner .game-features .hint-button{
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 5px;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: rgb(255, 140, 17);
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+.main-screenpg .ingame-screen .ingame-right .right-banner .game-features #Demo1{
+    color: white;
+    font-weight: bold;
+}
+
+.main-screenpg .ingame-screen .ingame-right .right-banner #advertisement{
+    margin-top: 5px;
+    color:white;
+    font-weight: 800;
 }

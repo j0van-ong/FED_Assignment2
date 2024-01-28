@@ -14,36 +14,43 @@
 <body>
     <div class="indexMainwrapper"> <!--Container for whole webpage-->
         <div class="main-screenpg">
-        <header>
+        <header> 
             <div class="logo"> 
                 <img src="./Picture/website-logo.jpg" alt="Emoji Charade"> 
             </div>
-            <nav>
-                <a id="currentpg" href="#index">Home</a> <a href="#leaderboard">Leaderboard</a>
+            <nav> <!--Navigation links-->
+                <a id="currentpg" href="index.html">Home</a> <a href="#leaderboard">Leaderboard</a>
             </nav>
         </header>
         <div class="game-info-container">
-            <section class="game-intro-left">
-                <img src="./Picture/header-logo.jpg"alt="Emoji Charades!"> <!--insert logo-->
+            <section class="game-intro-left"> <!--Left align of screen-->
+                <img src="./Picture/header-logo.jpg"alt="Emoji Charades!" style="width:620px; height: 210px;"> <!--insert logo-->
+                <div class="lottiemainpg">
+                    <dotlottie-player src="https://lottie.host/b9d054a5-1d81-4f07-aeea-6afb1bb1d874/LOexDMVABS.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></dotlottie-player>
+                </div>
                 <div class="game-intro-text"> 
-                    Embark on a cognitive adventure with Emoji Charades, a game designed to challenge and entertain teenagers, especially students. This brain-boosting game provides a platform for users to exercise their minds through engaging puzzle games
+                    Embark on a cognitive adventure with Emoji Charades, a game designed to challenge and entertain teenagers, especially students! This brain-boosting game provides a platform for users to exercise their minds through engaging puzzle games
                 </div>
                 <button id="playnow">Play Now!</button>
-                <div id="enter-game-submission">
+                <div id="enter-game-submission"> <!--inputing username form-->
                     <form class="enteruserform">
                         <label for="username" style="font-family: 'Lato', sans-serif; color:white; font-weight: bolder;">Username:</label>
-                        <input type ="text" placeholder="Username" id = "username" name="username1" required>
+                        <input type ="text" placeholder="Enter a existing/new username..." id = "username" name="username1" required>
+                        <select id="gameCategory" name="gameCategory"required>
+                            <option>Music</option>
+                            <option>Country</option>
+                        </select>
                         <button type="submit" class="submit-givenUser">Go!</button>
                     </form>
                 </div>
             </section>
             <section class="game-intro-right">
-                <!--IMG BACKGROUND INSERTED HERE-->
+                <!--IMG BACKGROUND INSERTED HERE IN CSS-->
             </section>
         </div>
-        
         </div>
     </div>
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> <!--Lottie script-->
 <script src="script.js"></script>
 </body>
 </html>
