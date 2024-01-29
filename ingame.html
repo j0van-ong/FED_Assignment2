@@ -19,7 +19,7 @@
                 <img src="./Picture/website-logo.jpg" alt="Emoji Charade"> 
             </div>
             <nav> <!--Navigation links-->
-                <a id="currentpg" href="index.html">Home</a> <a href="#leaderboard">Leaderboard</a>
+                <a id="currentpg" href="index.html">Home</a> <a href="leaderboard.html">Leaderboard</a>
             </nav>
         </header>
         <div class="ingame-screen">
@@ -31,7 +31,7 @@
                     00:03:00 
                 </div> <!--Timer container-->
                 <div class="question-display">
-                    <!--Image from RESTDB inserted here-->
+                    <div class="qn-img"><!--Image from RESTDB inserted here--></div>
                 </div>
                 <div id="enter-game-answer"> <!--inputing username form-->
                     <form class="enter-ans-form">
@@ -48,7 +48,7 @@
                         <!--w3 Dropdown use here-->
                         <button onclick="myFunction('Demo1')" class="hint-button">Click for hint! -5pts</button>
                             <div id="Demo1" class="w3-hide w3-animate-zoom">
-                            <a href="#" class="w3-button w3-block w3-center-align">hint!</a>
+                            <a href="#" id="hinttext"class="w3-button w3-block w3-center-align">hint!</a>
                             </div>
                         <!--End of w3-->
                     </div>

@@ -18,3 +18,10 @@ function myFunction(id) {
     x.className = x.className.replace(" w3-show", "");
   }
 }
+
+let submitBtn = document.getElementById('submit-givenUser');
+submitBtn.addEventListener('click', function (e) {
+    e.preventDefault(); //Default deny
+    location.href = "ingame.html"
+});
+
