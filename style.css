@@ -282,3 +282,61 @@
     background-image: url(./Picture/bg-orangeyellow.jpg);
     background-size: cover;
 }
+
+.main-screenpg .leaderboardscreen {
+    width: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%; /*spacing below*/
+    padding-top: 1.5%;
+}
+
+/*flex container for the img and refresh button out there*/
+.main-screenpg .leaderboardscreen .leaderboard-title{
+    margin-bottom: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /*to stick at each end*/
+    flex-wrap: wrap; /*push down if no space*/
+}
+
+/*css for leaderboard top 5 img*/
+.main-screenpg .leaderboardscreen .leaderboard-title img {
+    width: 420px;
+    height: 35px;
+}
+
+/*refresh button css*/
+.main-screenpg .leaderboardscreen .leaderboard-title button {
+    background-color: rgb(15, 175, 0);
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    padding: 12px 18px;
+    border: 2px solid green;
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+    border-radius: 10px;
+    cursor: pointer; 
+}
+
+/*container for each leaderboard holder*/
+.main-screenpg .leaderboardscreen .leaderboard-container .leaderboard-list .leaderboard-item {
+    width: 98%;
+    margin-bottom: 1.5rem; /*adds the space between eachother*/
+    border: 9px outset white;
+    border-radius: 8px; /*curves effect just like our button above*/
+    padding: 3.5rem;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; /*equally spaced out from each end */
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+/*Resizing img of the placing */
+.main-screenpg .leaderboardscreen .leaderboard-container .leaderboard-list .leaderboard-item .rank img{
+    width: 65%;
+    height: 65%;
+}
+
