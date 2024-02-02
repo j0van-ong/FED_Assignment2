@@ -125,7 +125,7 @@
 }
 /*selecting go button*/
 .main-screenpg #enter-game-submission .enteruserform #submit-givenUser{
-    width: 10%;
+    width: 100px;
     background-color: rgb(15, 175, 0);
     color: rgb(255, 255, 255);
     font-weight: bolder;
@@ -346,8 +346,8 @@
     height: 65%;
 }
 
-/*css LOADING, applicable for all pages. z index to appear infront*/
-#loading-animation {
+/*css LOADING, applicable for leaderboard. z index to appear infront*/
+#loading-animation-leaderboard {
     /* Adjust overall appearance and positioning here */
     position: absolute;
     top: 50%;

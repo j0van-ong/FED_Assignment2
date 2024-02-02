@@ -45,7 +45,7 @@ function refreshLeaderboard(){
 function getLeaderboard() {
 
    // Show loading animation
-   const indicator = document.getElementById("loading-animation");
+   const indicator = document.getElementById("loading-animation-leaderboard");
    indicator.style.display = "block";
 
   //Create our AJAX settings
