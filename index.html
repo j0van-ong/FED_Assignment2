@@ -31,7 +31,7 @@
                 <div class="game-intro-text"> 
                     Embark on a cognitive adventure with Emoji Charades, a game designed to challenge and entertain teenagers, especially students! This brain-boosting game provides a platform for users to exercise their minds through engaging puzzle games
                 </div>
-                <button id="playnow">Play Now!</button>
+                <button onclick="playnow()" id="playnow">Play Now!</button>
                 <div id="enter-game-submission"> <!--inputing username form-->
                     <form class="enteruserform">
                         <label for="username" style="font-family: 'Lato', sans-serif; color:white; font-weight: bolder;">Username:</label>
@@ -40,7 +40,7 @@
                             <option>Music</option>
                             <option>Country</option>
                         </select>
-                        <button type="submit" id="submit-givenUser">Go!</button>
+                        <button onclick="switchToInGame()" type="submit" id="submit-givenUser">Go!</button>
                     </form>
                 </div>
             </section>

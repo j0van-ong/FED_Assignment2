@@ -22,10 +22,12 @@
                 <a href="index.html">Home</a> <a id="currentpg" href="leaderboard.html">Leaderboard</a>
             </nav>
         </header>
+        <div id="loading-animation">
+          <dotlottie-player src="https://lottie.host/6a9fba75-f120-4e0a-9d5f-95a4994ae53f/kI8NVyy2R4.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>        </div>
         <div class="leaderboardscreen">
             <div class="leaderboard-title">
               <img src="./Picture/leaderboard-top5.png" alt="Leaderboard Top 5">
-              <button id="#refresh">Refresh</button>
+              <button onclick="refreshLeaderboard()" id="refresh">Refresh</button>
             </div>
             <div class="leaderboard-container">
                 <ul class="leaderboard-list">

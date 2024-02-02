@@ -297,13 +297,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between; /*to stick at each end*/
-    flex-wrap: wrap; /*push down if no space*/
-}
-
-/*css for leaderboard top 5 img*/
-.main-screenpg .leaderboardscreen .leaderboard-title img {
-    width: 420px;
-    height: 35px;
+    flex-wrap: wrap;
 }
 
 /*refresh button css*/
@@ -318,6 +312,13 @@
     border-radius: 10px;
     cursor: pointer; 
 }
+
+/*css for leaderboard top 5 img*/
+.main-screenpg .leaderboardscreen .leaderboard-title img {
+    width: 420px;
+    height: 35px;
+}
+
 
 /*container for each leaderboard holder*/
 .main-screenpg .leaderboardscreen .leaderboard-container .leaderboard-list .leaderboard-item {
@@ -346,3 +347,12 @@
     height: 65%;
 }
 
+#loading-animation {
+    /* Adjust overall appearance and positioning here */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+  
