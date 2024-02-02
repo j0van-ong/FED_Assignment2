@@ -325,13 +325,19 @@
     margin-bottom: 1.5rem; /*adds the space between eachother*/
     border: 9px outset white;
     border-radius: 8px; /*curves effect just like our button above*/
-    padding: 3.5rem;
+    padding: 1.5rem;
     display: flex;
     align-items: center; 
     justify-content: space-between; /*equally spaced out from each end */
     color: white;
     font-size: 50px;
     font-weight: bold;
+}
+
+/*enlarge effect when hover*/
+.main-screenpg .leaderboardscreen .leaderboard-container .leaderboard-list .leaderboard-item:hover {
+    transform: scale(1.05); 
+    transition: 0.5s;
 }
 
 /*Resizing img of the placing */
