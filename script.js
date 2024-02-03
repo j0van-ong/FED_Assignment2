@@ -2,6 +2,7 @@ const APIKEY = '65bb98eaca96575e0b277ca0' //WILL BE USED FOR RESTDB API, availab
 
 window.onload = function(){
   document.getElementById("enter-game-submission").style.display = "none";
+  startTimer(); // Start the countdown when the page is fully loaded
 }
 
 //This functions process this block when first loaded
@@ -27,19 +28,9 @@ function playnow(){
 }
 
 //change from index.html to ingame.html 
-let submitBtn = document.getElementById('submit-givenUser');
-submitBtn.addEventListener('click', function (e) {
-  e.preventDefault(); //Default deny
+function switchToInGame(){
   location.href = "ingame.html"
-});
-
-
-//The button automatically gets the updated data without refreshing entire page
-function refreshLeaderboard(){
-  console.log("Buttonclicked"); // test
-  getLeaderboard();
 }
-
 
 //This function gets the list of user and its highest score from restdb leaderboard
 function getLeaderboard() {
@@ -98,4 +89,9 @@ function getLeaderboard() {
   });
 }
 
-
+//this opens up a new tab to facebook
+var isFBclick = false;
+var notFBClick = true;
+function newtabFb(){
+  window.open("https://www.facebook.com/login.php/")
+}
