@@ -1,15 +1,18 @@
 const APIKEY = '65bb98eaca96575e0b277ca0' //WILL BE USED FOR RESTDB API, available out there as global var
 
 window.onload = function(){
-  document.getElementById("enter-game-submission").style.display = "none";
-  startTimer(); // Start the countdown when the page is fully loaded
+  let hideForm  = document.getElementById("enter-game-submission");
+  if (hideForm != null){
+    hideForm.style.display = "none";
+  }
+
 }
 
-//This functions process this block when first loaded
+//This functions process this block when first loaded, 
 document.addEventListener("DOMContentLoaded", function () {
     //Start of commands to carry out
     getLeaderboard(); //update at the start
-
+    startTimer(); // Start the countdown when the page is fully loaded, when at ingame.html
 })
 
 //W3 school script on showing/hiding the accordion
@@ -28,8 +31,62 @@ function playnow(){
 }
 
 //change from index.html to ingame.html 
-function switchToInGame(){
+function switchToInGame(e){
+  // Prevent the default form submission behavior
+  e.preventDefault();
+  //Get the username input value from the form
+  const playerUser = document.getElementById("username").value;
+
+  // Check if the username input is empty
+  if (playerUser.trim() === "") {
+    // If the username is empty, display an error message and return
+    console.log("Username cannot be empty."); //test
+    alert("Username cannot be empty.") //PROMPT USER
+    return; 
+  }
+
+  //Save the username for later use
+  localStorage.setItem("username", playerUser);
+
+  //Displaying message and redirect the user
+  console.log("Username submitted:", playerUser);
   location.href = "ingame.html"
+}
+
+
+
+//The button automatically gets the updated data without refreshing entire page
+function refreshLeaderboard(){
+  console.log("Buttonclicked"); // test
+  getLeaderboard();
+}
+
+function startTimer(){
+  //test this, whether at right page
+  let timer = document.getElementById("timer");
+  if (timer == null){
+    return;
+  }
+  let timeInSeconds = 150; // 2 minutes 30 seconds
+
+  // Update the timer every second
+  const timerInterval = setInterval(function() {
+    // Convert time to hours, minutes, and seconds with some math calculation
+    const hours = Math.floor(timeInSeconds / 3600);
+    const minutes = Math.floor((timeInSeconds % 3600) / 60);
+    const seconds = timeInSeconds % 60;
+
+    // Display the timer in the "HH:MM:SS" format
+    timer.textContent = `${hours < 10 ? "0" : ""}${hours}:${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    timeInSeconds--; 
+
+    // If time reaches 0, clear the interval
+    if (timeInSeconds < 0) {
+      clearInterval(timerInterval);
+      // You can add any action you want to perform when the timer reaches 0
+      alert("Time's up!");
+    }
+  }, 1000); // Run every second
 }
 
 //This function gets the list of user and its highest score from restdb leaderboard
@@ -37,7 +94,12 @@ function getLeaderboard() {
 
    // Show loading animation
    const indicator = document.getElementById("loading-animation-leaderboard");
+
+   if (indicator == null){
+    return; //end this method, cant find at it is not at the correct html page.
+   }
    indicator.style.display = "block";
+
 
   //Create our AJAX settings
   let settings = {

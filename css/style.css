@@ -169,9 +169,9 @@
     padding: 10px 12px; /*top-bot, left-right */
     background-color: black;
     color: white;
+    width: 140px;
     border-radius: 10px;
     border: 2px solid white;
-    width: 15%;
     font-family: 'Lato', sans-serif;
     font-weight: bold;
     font-size: 20px; 
@@ -204,12 +204,12 @@
 }
 
 .main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form .submit-answer{
-    width: 10%;
+    width: 95px;
     background-color: rgb(15, 175, 0);
     color: rgb(255, 255, 255);
     font-weight: bolder;
     padding: 10px 12px;
-    border: 1px solid green;
+    border: 3px solid green;
     display: inline-block;
     margin-left: 30px;
     margin-top: 10px;
