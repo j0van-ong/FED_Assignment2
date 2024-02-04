@@ -36,7 +36,6 @@ function switchToInGame(e){
   e.preventDefault();
   //Get the username input value from the form
   const playerUser = document.getElementById("username").value;
-
   // Check if the username input is empty
   if (playerUser.trim() === "") {
     // If the username is empty, display an error message and return
@@ -47,12 +46,13 @@ function switchToInGame(e){
 
   //Save the username for later use
   localStorage.setItem("username", playerUser);
-
+  //Get the category where user chooses and store it too
+  const category = document.getElementById("gameCategory").value;
+  localStorage.setItem("category", category);
   //Displaying message and redirect the user
-  console.log("Username submitted:", playerUser);
+  console.log("Submitted details: ", playerUser, category);
   location.href = "ingame.html"
 }
-
 
 
 //The button automatically gets the updated data without refreshing entire page
