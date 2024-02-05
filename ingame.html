@@ -23,12 +23,21 @@
             </nav>
         </header>
         <div class="ingame-screen">
+            <!--these three below are for lottie interaction with the users, default hidden-->
+            <div id="loading-animation-ingame">
+                <dotlottie-player src="https://lottie.host/6a9fba75-f120-4e0a-9d5f-95a4994ae53f/kI8NVyy2R4.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            </div>
+            <div id="celebrate-correct-ans">
+                <dotlottie-player src="https://lottie.host/69d7ea8b-dd52-425d-a1b2-32a1922a7e85/C8qRSu0kPb.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>            </div>
+            <div id="wrong-ans">
+                <dotlottie-player src="https://lottie.host/f5743a0a-1f25-4cab-824d-d4b3476f338c/dXkctQr4m1.json" background="transparent" speed="1" style="width: 400px; height: 400px;" loop autoplay></dotlottie-player>  `;
+            </div>
             <section class="ingame-left">
                 <div id="timerid"> 
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch-fill" viewBox="0 0 16 16">
                     <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07A7.001 7.001 0 0 0 8 16a7 7 0 0 0 5.29-11.584l.013-.012.354-.354.353.354a.5.5 0 1 0 .707-.707l-1.414-1.415a.5.5 0 1 0-.707.707l.354.354-.354.354-.012.012A6.97 6.97 0 0 0 9 2.071V1h.5a.5.5 0 0 0 0-1zm2 5.6V9a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1 0-1h3V5.6a.5.5 0 1 1 1 0"/>
                     </svg> <!--Bootstrap icon code-->
-                    <span id="timer">00:02:30</span>
+                    <span id="timer">00:03:00</span>
                 </div> <!--Timer container-->
                 <div class="question-display">
                     <div id="qn-img"><!--Image from RESTDB inserted here--></div>
@@ -37,18 +46,18 @@
                     <form class="enter-ans-form">
                         <label for="answer" style="font-family: 'Lato', sans-serif; color:white; font-weight: bolder;"></label>
                         <input type ="text" placeholder="Type your answer here..." id = "answer" name="answer" required>
-                        <button type="submit" class="submit-answer">Submit</button>
+                        <button onclick="CheckAnswer(event)" type="submit" class="submit-answer">Submit</button>
                     </form>
                 </div>
             </section>
             <section class="ingame-right">
                 <div class="right-banner">
                     <div class="game-features">
-                        <div class="status"> Progress: 1/5 </div>
+                        <div class="status"> Progress: <span id="progress">1/5</span></div>
                         <!--w3 Dropdown use here-->
                         <button onclick="myFunction('Demo1')" class="hint-button">Click for hint! -5pts</button>
                             <div id="Demo1" class="w3-hide w3-animate-zoom">
-                            <a href="#" id="hinttext"class="w3-button w3-block w3-center-align">hint!</a>
+                                <a href="#" id="hinttext"class="w3-button w3-block w3-center-align">hint!</a>
                             </div>
                         <!--End of w3-->
                     </div>

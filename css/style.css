@@ -3,7 +3,7 @@
     background-image: url(../Picture/bg-orangeyellow.jpg);
     background-size: cover;
 }
-/*Container for nav bar across website*/
+/*Container for nav bar across website, consistent*/
 .main-screenpg header {
     font-family: 'Lato', sans-serif;
     overflow:auto; /* clip the content or add scrollbars if cant fit*/ 
@@ -32,6 +32,7 @@
     float: left;
 }
 
+/*styling of the individual button of nav*/
 .main-screenpg header nav a{
     color:rgb(255, 255, 255);
     text-decoration: none;
@@ -43,18 +44,24 @@
     font-family: 'Lato', sans-serif;
     font-weight: bold;
 }
+/*creates the effect of hover*/
 .main-screenpg header nav a:hover{
     background-color: rgb(0, 0, 0);
     transition: 1s;
 }
+/*those page with this id will have the button as black, customised in html*/
 .main-screenpg header nav #currentpg{
     background-color: rgb(0, 0, 0);
 
 }
+
+/*whole container after the header*/
 .main-screenpg .game-info-container{
     width: 100%;
     height: 96vh;
 }
+
+/*left align of the container*/
 .main-screenpg .game-intro-left{
     float: left;
     width: 63%;
@@ -62,12 +69,20 @@
     height: 96vh;
 }
 
+/*emoji charades image as main cover*/
+.main-screenpg .game-intro-left img{
+    width:62%;
+    height: 200px;
+}
+
+/*placement of the emoji at index.html*/
 .main-screenpg .game-intro-left .lottiemainpg{
     display: inline-block; /*align on the same line with img*/
     position: relative; 
     top: 90px /*allows it to be placed from a top distance with relative*/
 }
 
+/*div styling for short para of game introduction*/
 .main-screenpg .game-intro-left .game-intro-text{
     margin-top: 20px;
     font-family: 'Lato', sans-serif;
@@ -76,6 +91,7 @@
     word-spacing: 2px;
     color:white;
 }
+
 /*Play now button styling*/
 .main-screenpg .game-intro-left button{
     padding: 14px 20px; /*top-bot, l-r*/
@@ -89,12 +105,15 @@
     color: black;
     font-size: 18px;
 }
+
 /*Play now button hovering effect*/
 .main-screenpg .game-intro-left button:hover{
     transition: 1s;
     color: white;
     background-color: black;
 }
+
+/*lightbulb background pic*/
 .main-screenpg .game-info-container .game-intro-right{
     float: left;
     width: 35%;
@@ -120,6 +139,7 @@
     border-radius: 4px;
     box-sizing: border-box;
 }
+/*style for choosing the category*/
 .main-screenpg #enter-game-submission .enteruserform select{
     margin-left: 11%; /*align with username form */
 }
@@ -152,8 +172,42 @@
 /*This sets the display size, the full screen of the computer*/
 .main-screenpg .ingame-screen {
     width: 100%;
-    height: 95vh;
+    height: 100vh;
     margin-top: 10px;
+    display: flex;
+}
+
+/*loading animation for ingame*/
+#loading-animation-ingame{
+    /* Adjust overall appearance and positioning here */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1; /*shown at the front*/
+}
+
+/*party animation for ingame, for correct ans. hidden at default*/
+#celebrate-correct-ans{
+    /* Adjust overall appearance and positioning here */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1; /*shown at the front*/
+}
+
+/*party animation for ingame, for wrong ans. hidden at default*/
+#wrong-ans{
+    /* Adjust overall appearance and positioning here */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1; /*shown at the front*/
 }
 
 /*left container for the display*/
@@ -161,9 +215,10 @@
     float: left;
     width: 63%;
     padding-left: 2%;
-    height: 95vh;
+    height: 100vh;
     padding-top: 10px; /*spacing from top to centralise*/
 }
+
 
 .main-screenpg .ingame-screen .ingame-left #timerid{
     padding: 10px 12px; /*top-bot, left-right */
@@ -177,6 +232,7 @@
     font-size: 20px; 
 }
 
+
 .main-screenpg .ingame-screen .ingame-left .question-display {
     margin-top: 10px;
     height: 450px;
@@ -184,6 +240,9 @@
     width: 100%;
     border: 2.5px solid black;
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form {
@@ -193,9 +252,10 @@
     margin-top: 0;
 }
 
+
 .main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form input[type=text], select{
-    margin-top: 20px;
     width: 40%;
+    margin-top: 8px;
     padding: 10px 12px; /*this adds spaces within the textbox*/
     display: inline-block; /*able to apply width and padding to this input box*/
     border: 1px solid #000000;
@@ -226,7 +286,7 @@
     float: left;
     width: 35%;
     padding-left: 2%;
-    height: 95vh;
+    height: 100vh;
 }
 
 .main-screenpg .ingame-screen .ingame-right .right-banner{
@@ -461,4 +521,48 @@
     background-color: rgb(3, 3, 193);
     transition: 0.6s;
     transform: scale(1.1);
+}
+
+
+/*STYLE FOR RESPONSIVE*/
+@media screen and (max-width:650px) {
+    /*INDEX.HTML*/
+    /*whole container after the header at index*/
+    .main-screenpg .game-info-container{
+        height: 115vh; /*to accomodate all the elements*/
+    }
+    .main-screenpg .game-intro-left{
+        width: 98%; /*full screen*/
+        margin-top: 3%; /*SPACING ABOVE*/
+    }
+
+    .main-screenpg .game-intro-left img{
+        width: 100%; /*only the left is wanted, expand full screen*/
+    }
+    /*no longer needs to be relative, emoji is being push down*/
+    .main-screenpg .game-intro-left .lottiemainpg{ 
+        position: static;
+    }
+    /*remove the lightbulb as not needed in mobile*/
+    .main-screenpg .game-info-container .game-intro-right{
+        display: none;
+    }
+    /*end of INDEX HTML*/
+
+    /*start of INGAME HTML*/
+    /*This sets the display size, the full screen of the computer*/
+    .main-screenpg .ingame-screen {
+        width: 100%;
+        height: 100%;
+        margin-top: 10px;
+        flex-direction: column; /*to move it down*/
+    }
+    /*left container for the display to become full*/
+    .main-screenpg .ingame-screen .ingame-left{
+        width: 100%;
+    }
+    /*right container for the display*/
+    .main-screenpg .ingame-screen .ingame-right{
+        width: 100%;
+    }
 }
