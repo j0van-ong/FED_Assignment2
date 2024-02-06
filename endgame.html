@@ -25,17 +25,19 @@
             </nav>
         </header>
         <div class="endgame-container">
+            <div id="loading-animation-endgame"> <!--loading animation-->
+                <dotlottie-player src="https://lottie.host/6a9fba75-f120-4e0a-9d5f-95a4994ae53f/kI8NVyy2R4.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            </div>
             <div class="score-container">
                 <div class="signboard"><img src="./Picture/completed-text.png" alt="completed"></div>
-                <div class="star-rating">
-                    <span><img src="./Picture/game-star-isolated-removebg-preview.png"></span>
-                    <span><img src="./Picture/game-star-isolated-removebg-preview.png"></span>
-                    <span><img src="./Picture/game-star-isolated-removebg-preview (1).png"></span>
+                <div id="star-rating">
+                    <span id="star1"><img src="./Picture/game-star-isolated-removebg-preview.png"></span>
+                    <span id="star2"><img src="./Picture/game-star-isolated-removebg-preview.png"></span>
+                    <span id="star3"><img src="./Picture/game-star-isolated-removebg-preview (1).png"></span>
                 </div>
                 <div class="playerinfo">
                     <div id="player-name">Name: </div>
                     <div id="player-score">Score: </div>
-                    <div id="time-obtain">Time left: </div>
                 </div>
                 <div class="option-button">
                     <button id="try-again"><img src="./Picture/try-again-button.png" alt="try again button"></button>

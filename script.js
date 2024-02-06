@@ -2,7 +2,6 @@ const APIKEY = '65bb98eaca96575e0b277ca0' //WILL BE USED FOR RESTDB API, availab
 
 let questions; //make it a global variable first
 var currentQuestionIndex = 0; //first question at the start
-let score = 0; //total score by player
 let hintNotClick;
 let isHintClick;
 
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error('Error fetching questions:', error);
       alert('Please refresh the page, error getting data');
     });
-
+    displayResult();
 })
 
 //W3 school script on showing/hiding the accordion, and added my own var to check for is click before
@@ -49,12 +48,18 @@ function myFunction(id) {
     isHintClick = true;
     if (isHintClick && hintNotClick){
       console.log("Hint clicked alr")
-      score = score - 5;
+      //deduction of score
+      currentScore = localStorage.getItem('currentScore');
+      storedInt = parseInt(currentScore); // Parse string to integer since localstorage stores string
+      storedInt = storedInt -5;
+      if (storedInt <0){ //no negative balance
+        storedInt = 0;
+      }
+      localStorage.setItem('currentScore', storedInt);
+
       hintNotClick = false; //can no longer trigger this if function as only once, reset by displayquestions
       alert('Hints used! -5 Points');
-      if (score <0){ //no negative balance
-        score = 0;
-      }
+
     }
   } 
   else { 
@@ -92,7 +97,7 @@ function switchToInGame(e){
   .then(isActionConfirm => {
     console.log("User proceeds on: " + isActionConfirm); //debugging purposes
     if (isActionConfirm) {
-      localStorage.setItem("category", category); //confirm the category too
+      localStorage.setItem("category", category); //confirm the category too, save into storage so that it saves the details
       console.log("Submitted details: ", playerUser, category);
       location.href = "ingame.html";
     } else {
@@ -122,9 +127,12 @@ function checkUsername(playerUser, category) {
       .then(response => response.json())
       .then(data => {
         var isFound = false;
+        console.log(data);
         for (let i = 0; i < data.length; i++) {
           if (data[i].username === playerUser) {
             isFound  = true;
+            var foundscore = data[i].score;
+            var foundId = data[i]._id;
             break;
           }
         }
@@ -134,8 +142,8 @@ function checkUsername(playerUser, category) {
           const continueWUser = window.confirm(msg);
           if (continueWUser) {
             localStorage.setItem("username", playerUser);
-            localStorage.setItem("_id", data._id);
-            localStorage.setItem("highestscore", data.score);
+            localStorage.setItem("_id", foundId);
+            localStorage.setItem("highestscore", foundscore);
             resolve(true);
           } 
           else {
@@ -146,8 +154,9 @@ function checkUsername(playerUser, category) {
           var msg = `You have selected a new unused username.\nUsername: ${playerUser}\nCategory: ${category}\nContinue?`;
           let continueWUser = window.confirm(msg);
           if (continueWUser) {
-            MakeNewPlayer(playerUser);
-            resolve(true);
+            MakeNewPlayer(playerUser)
+              .then(() => resolve(true))
+              .catch(error => reject(error));
           } else {
             resolve(false);
           }
@@ -161,34 +170,40 @@ function checkUsername(playerUser, category) {
   });
 }
 
-//Make new player function, only called if DeterminePlayer cant find the user
+//Make new player function, only called if DeterminePlayer cant find the user. new promise is needed so that the function waits for it
 function MakeNewPlayer(playerUser){
-  //create json object format to post
-  var jsonData = {
-    "username": playerUser,
-    "score": 0, //default 0 for new user
-  }
+  return new Promise((resolve, reject) => {
+    //create json object format to post
+    var jsonData = {
+      "username": playerUser,
+      "score": 0,
+    };
+
     //[STEP 4]: Create AJAX settings
     let settings = {
-      method: "POST", //[cher] we will use post to send info
+      method: "POST", //we will use post to send info
       headers: {
         "Content-Type": "application/json",
         "x-apikey": APIKEY,
         "Cache-Control": "no-cache"
       },
       body: JSON.stringify(jsonData),
-    }
+    };
 
     //Send our AJAX request over to the DB
     fetch("https://emojicharade-161f.restdb.io/rest/leaderboard", settings)
       .then(response => response.json())
       .then(data => {
-        console.log(data); //see if works
-        //Save the username, id and score for later use like updating and remembering the user if refresh
         localStorage.setItem("username", playerUser);
         localStorage.setItem("_id", data._id);
         localStorage.setItem("highestscore", data.score);
+        resolve(data); // Resolve with the response data
       })
+      .catch(error => {
+        console.error('Error creating new player:', error);
+        reject(error);
+      });
+  });
 }
 
 //The button automatically gets the updated data without refreshing entire page
@@ -197,8 +212,9 @@ function refreshLeaderboard(){
   getLeaderboard();
 }
 
+//call last, begins running after everything is done.
 function startTimer(){
-  //test this, whether at right page
+  //test this, whether at right page, if not at right page return null;
   let timer = document.getElementById("timer");
   if (timer == null){
     return;
@@ -258,11 +274,10 @@ function getLeaderboard() {
     //If the result is positive, a comes before b, resulting in ascending order.
     scoresAndUsernames.sort((a, b) => b.score - a.score);
 
-    // Take top 5 entries
+    //Take top 5 entries
     top5 = scoresAndUsernames.slice(0, 5);
-    console.log(top5)//testoutput
 
-    // Loop through the top 5 entries and insert data into HTML using data attributes
+    //Loop through the top 5 entries and insert data into HTML using data attributes
     const leaderboardItems = document.querySelectorAll(".leaderboard-item"); //all of the elements with the class leaderboard-item.
 
     leaderboardItems.forEach((item, index) => {
@@ -275,20 +290,20 @@ function getLeaderboard() {
       }
     });
 
-    // Hide loading animation after data is fetched and processed
+    //Hide loading animation after data is fetched and processed
     indicator.style.display = "none";
   })
   .catch(error => {
-    // Handle any errors that occurred during the fetch
+    //Handle any errors that occurred during the fetch
     console.error('Error fetching leaderboard data:', error);
     alert('Cant get the api')
-    // Hide loading animation in case of error
+    //Hide loading animation in case of error
     indicator.style.display = "none";
   });
 }
 
 function getQuestions() {
-  // Show loading animation
+  //Show loading animation
   const indicator = document.getElementById("loading-animation-ingame");
 
   if (indicator == null) {
@@ -319,7 +334,7 @@ function getQuestions() {
             const filteredArray = response.filter(item => item.category === selectedCategory);
             console.log(filteredArray); //test
 
-            //Extract questions, answer, hint only
+            //Extract questions, answer, hint only, unwanted _id
             const questionInfo = filteredArray.map(data => ({
                 question: data.question,
                 answers: data.answers,
@@ -337,14 +352,14 @@ function getQuestions() {
                 return array;
             }
 
-            //Take top 5 entries as 5 questions only
-            const first5Qn = shuffledQnArray.slice(0, 5);
-            console.log(first5Qn); //debugging to show
+            //Take top 7 entries as our 7 questions only
+            const first7Qn = shuffledQnArray.slice(0, 7);
+            console.log(first7Qn); //debugging to show
 
             //Hide loading animation
             indicator.style.display = "none";
 
-            resolve(first5Qn); // Resolve the promise with the fetched questions
+            resolve(first7Qn); // Resolve the promise with the fetched questions
         })
         .catch(error => {
             console.error("Error fetching questions:", error);
@@ -357,6 +372,9 @@ function getQuestions() {
 
 //This function is called on default on first time, it needs to pass in index and array
 function displayQuestions(questionArray, currentQuestionIndex){
+    if (currentQuestionIndex == 0){
+      localStorage.setItem('currentScore', 0); //at the very start, define first to be 0
+    }
     console.log('displaying questions');
     var currentQuestion = questionArray[currentQuestionIndex];
     isHintClick = false; //both var to hold the conditions for checking hint used
@@ -382,14 +400,24 @@ function CheckAnswer(e){
   if (answer.toLowerCase() === currentQuestion.answers.toLowerCase()) { //to verify w all lower case as default
       //Correct answer
       var correctAns= true;
+
+      //increment of score
+      currentScore = localStorage.getItem('currentScore');
+      storedInt = parseInt(currentScore); // Parse string to integer since localstorage stores string
+      storedInt = storedInt + 10;
+      localStorage.setItem('currentScore', storedInt);
+
       currentQuestionIndex++;
       if (currentQuestionIndex < questions.length) {
           displayQuestions(questions, currentQuestionIndex);
           showAnimationCW(correctAns);
           formclass = document.querySelector('.enter-ans-form');
           formclass.reset(); //clear the form so that its blank again
+
+          //This closes the w3 accordion to hide the answer in case user did not close it
+          Demo1.className = Demo1.className.replace(" w3-show", "");
       } else {
-          alert('Finish');
+        location.href = "endgame.html";
       }
   } else {
       //Incorrect answer
@@ -421,10 +449,113 @@ function showAnimationCW(rightOrWrong) {
 
 }
 
+function displayResult(){
+  const indicatorLoader = document.getElementById('loading-animation-endgame');
+  if (indicatorLoader == null){
+    return; //not at the right page
+  }
+  indicatorLoader.style.display = 'block';
+
+  //Gets the variable needed to display by retrieving from local storage
+  let displayUser = localStorage.getItem("username");
+  let displayScore = localStorage.getItem('currentScore'); 
+  let highestScore = localStorage.getItem('highestscore');
+
+  //convert score into an integer
+  displayScore = parseInt(displayScore);
+
+  //convert highest score into an integer
+  highestScore = parseInt(highestScore);
+ 
+  //Select the html element to insert in
+  const playerNameElement = document.getElementById("player-name");
+  const playerScoreElement = document.getElementById("player-score");
+
+  //See how many stars according to the score
+  const star1 = document.getElementById("star1");
+  const star2 = document.getElementById("star2");
+  const star3 = document.getElementById("star3");
+
+  //Set the image based on the player's score, total score is 70 in this case
+  if (displayScore >= 60) {
+      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
+      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
+      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
+  } else if (displayScore >= 40) {
+      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
+      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
+      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+  } else if (displayScore >= 20) {
+      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
+      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+  } else {
+      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+  }
+  indicatorLoader.style.display = 'none';
+
+  //Set the text content of each element to the corresponding value
+  playerNameElement.textContent = "Name: " + displayUser;
+  playerScoreElement.textContent = "Score: " + displayScore;
+  const starRatingContainer = document.getElementById('star-rating');
+  // Make the star rating container visible
+  starRatingContainer.style.display = 'flex';
+
+  // Apply the zoom-in effect after a short delay
+  setTimeout(function() {
+      starRatingContainer.classList.add('zoom-in');
+  }, 100); // Adjust the delay as needed
+  
+  if (displayScore > highestScore){  //current score is more than highest set
+    console.log('updating leaderboard...')
+    console.log('Displayscore:' + displayScore);
+    updateLeaderboard(displayScore, displayUser);
+  }
+}
+
+//Last function to call after at endgame.html, to update result or by sharing to Facebook
+function updateLeaderboard(receivescore, name){
+  playerId = localStorage.getItem("_id");
+
+  var updatedJsonData = {
+    "_id": playerId,
+    "username": name,
+    "score": receivescore
+  };
+
+  let settings = {
+    method: "PUT", 
+    headers: {
+      "Content-Type": "application/json", 
+      "x-apikey": APIKEY,
+      "Cache-Control": "no-cache"
+    }, 
+    body: JSON.stringify(updatedJsonData)
+  }
+  fetch(`https://emojicharade-161f.restdb.io/rest/leaderboard/${playerId}`, settings)
+    .then(response => response.json())
+    .then(data => {
+      console.log("score updated successfully:", data); //test
+    })
+    .catch(error => console.log(error));
+  
+}
 
 //this opens up a new tab to facebook
 var isFBclick = false;
 var notFBClick = true;
 function newtabFb(){
-  window.open("https://www.facebook.com/login.php/")
+  window.open("https://www.facebook.com/login.php/");
+  isFBclick = true;
+  if (isFBclick && notFBClick){
+    nowScore = localStorage.getItem('currentScore');
+    nowScore = parseInt(nowScore);
+    nowScore = nowScore + 5; ///current bonus
+    whichUser = localStorage.getItem("username");
+    updateLeaderboard(nowScore, whichUser);
+    const shownewScore = document.getElementById("player-score");
+    shownewScore.textContent = "Score: " + displayScore;
+  }
 }

@@ -448,6 +448,17 @@
     align-items: center;
 }
 
+/*loading animation for endgame*/
+#loading-animation-endgame{
+    /* Adjust overall appearance and positioning here */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1; /*shown at the front*/
+}
+
 /*container where all the info is displayed inside*/
 .main-screenpg .endgame-container .score-container{
     width: 98%;
@@ -458,15 +469,31 @@
     /*rgb(65, 128, 255)*/
 }
 
-.main-screenpg .endgame-container .star-rating{
-    display: flex;
+.main-screenpg .endgame-container #star-rating{
     justify-content: center;
     width: 100%;
     position: relative;
     top:-40px; /*nearer to signboard*/
+    display: none;
 }
 
-.main-screenpg .endgame-container .star-rating img{
+/* CSS for zoom-in effect of stars */
+.zoom-in { /*this class is to be added to star rating later*/
+    animation: zoomIn 0.5s forwards;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.main-screenpg .endgame-container #star-rating img{
     width: 85px;
     height: 85px;
 
@@ -500,6 +527,8 @@
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
+    margin-top: 50px;
+    margin-bottom: 70px;
 }
 
 .main-screenpg .endgame-container .score-container .option-button #try-again{
