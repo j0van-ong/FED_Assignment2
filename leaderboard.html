@@ -29,15 +29,15 @@
         <div class="leaderboardscreen">
             <div class="leaderboard-title">
               <img src="./Picture/leaderboard-top5.png" alt="Leaderboard Top 5">
-              <button onclick="refreshLeaderboard()" id="refresh">
-                <span class="material-symbols-outlined" style="margin: 0;">
+              <button onclick="refreshLeaderboard()" id="refresh"> <!--button for refreshing api-->
+                <span class="material-symbols-outlined" style="margin: 0;"> <!--bootstrap reload icon-->
                 restart_alt
                 </span>
                 Refresh
               </button>
             </div>
             <div class="leaderboard-container">
-                <ul class="leaderboard-list">
+                <ul class="leaderboard-list"> <!--container where all the sub container is contained to display the user leaderboard-->
                   <li class="leaderboard-item" style="background-color: rgb(248, 73, 73);">
                     <span class="rank"><img src="./Picture/first-place.png" alt="1st-place"></span>
                     <span class="game-name1" data-username=""></span> <!--data-username is data-attribute-->

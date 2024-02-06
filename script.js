@@ -24,17 +24,17 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(questionArray); //debugging
       questions = questionArray; //asssign to a global variable when done for displayquestion to access later for sub qn
       console.log(questions);
-      if (questionArray != null && Array.isArray(questionArray)) { ///shd be a array of object
+      if (questionArray != null && Array.isArray(questionArray)) { ///shd be a array of object as it is returned from restdb
         displayQuestions(questionArray, currentQuestionIndex); //
         startTimer(); // Start the countdown when the page is fully loaded, when at ingame.html
       }
       else { //this is a null, as indicator cant be found, meaning that our page is not on ingame
       console.error('No questions fetched or invalid page.');
-      // Handle the case where questionArray is null or not an array
+      //above handles the case where questionArray is null or not an array
       }
     })
     .catch(error => {
-      //errors that occurred during fetching or processing questions
+      //errors that occurred during fetching or processing questions, prompt
       console.error('Error fetching questions:', error);
       alert('Please refresh the page, error getting data');
     });
@@ -67,12 +67,19 @@ function playnow(){
   document.getElementById("enter-game-submission").style.display = "block";
 }
 
-//change from index.html to ingame.html 
+//change from index.html to ingame.html overall purpose, with validaito
 function switchToInGame(e){
   // Prevent the default form submission behavior
   e.preventDefault();
+
+  //Show loading animation when run, id is present as function only available in index.html
+  const loadindex = document.getElementById("loading-animation-index");
+  loadindex.style.display = 'block';
+  
   //Get the username input value from the form
   const playerUser = document.getElementById("username").value;
+  const category = document.getElementById("gameCategory").value;
+
   // Check if the username input is empty
   if (playerUser.trim() === "") {
     // If the username is empty, display an error message and return
@@ -80,17 +87,109 @@ function switchToInGame(e){
     alert("Username cannot be empty.") //PROMPT USER
     return; 
   }
-
-  //Save the username for later use
-  localStorage.setItem("username", playerUser);
-  //Get the category where user chooses and store it too
-  const category = document.getElementById("gameCategory").value;
-  localStorage.setItem("category", category);
-  //Displaying message and redirect the user
-  console.log("Submitted details: ", playerUser, category);
-  location.href = "ingame.html"
+  //handle asynchronous operations, so that it only returns after fetching and not get a value of undefined
+  checkUsername(playerUser, category)
+  .then(isActionConfirm => {
+    console.log("User proceeds on: " + isActionConfirm); //debugging purposes
+    if (isActionConfirm) {
+      localStorage.setItem("category", category); //confirm the category too
+      console.log("Submitted details: ", playerUser, category);
+      location.href = "ingame.html";
+    } else {
+      loadindex.style.display = 'none'; //hide loading
+      return; //no further action
+    }
+  })
+  .catch(error => { //incase of any error
+    console.error('Error checking username:', error);
+  });
 }
 
+//This functions checks for existing user, then prompts to confirm if user has decided. save to local storage. if not, make new using function, 
+function checkUsername(playerUser, category) {
+  //new Promise with .then() to wait for the questions to be fetched and processed 
+  return new Promise((resolve, reject) => { //make 
+    const settings = {
+      method: "GET", 
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": APIKEY, 
+        "Cache-Control": "no-cache"
+      },
+    };
+
+    fetch("https://emojicharade-161f.restdb.io/rest/leaderboard", settings)
+      .then(response => response.json())
+      .then(data => {
+        var isFound = false;
+        for (let i = 0; i < data.length; i++) {
+          if (data[i].username === playerUser) {
+            isFound  = true;
+            break;
+          }
+        }
+
+        if (isFound){
+          const msg = `You have selected an existing username.\nUsername: ${playerUser}\nCategory: ${category}\nContinue?`;
+          const continueWUser = window.confirm(msg);
+          if (continueWUser) {
+            localStorage.setItem("username", playerUser);
+            localStorage.setItem("_id", data._id);
+            localStorage.setItem("highestscore", data.score);
+            resolve(true);
+          } 
+          else {
+            resolve(false);
+          }
+        }
+        else {
+          var msg = `You have selected a new unused username.\nUsername: ${playerUser}\nCategory: ${category}\nContinue?`;
+          let continueWUser = window.confirm(msg);
+          if (continueWUser) {
+            MakeNewPlayer(playerUser);
+            resolve(true);
+          } else {
+            resolve(false);
+          }
+        }
+
+      })
+    .catch(error => {
+      console.error('Error fetching leaderboard data:', error);
+      reject(error);
+    });
+  });
+}
+
+//Make new player function, only called if DeterminePlayer cant find the user
+function MakeNewPlayer(playerUser){
+  //create json object format to post
+  var jsonData = {
+    "username": playerUser,
+    "score": 0, //default 0 for new user
+  }
+    //[STEP 4]: Create AJAX settings
+    let settings = {
+      method: "POST", //[cher] we will use post to send info
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": APIKEY,
+        "Cache-Control": "no-cache"
+      },
+      body: JSON.stringify(jsonData),
+    }
+
+    //Send our AJAX request over to the DB
+    fetch("https://emojicharade-161f.restdb.io/rest/leaderboard", settings)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data); //see if works
+        //Save the username, id and score for later use like updating and remembering the user if refresh
+        localStorage.setItem("username", playerUser);
+        localStorage.setItem("_id", data._id);
+        localStorage.setItem("highestscore", data.score);
+      })
+}
 
 //The button automatically gets the updated data without refreshing entire page
 function refreshLeaderboard(){
@@ -182,6 +281,7 @@ function getLeaderboard() {
   .catch(error => {
     // Handle any errors that occurred during the fetch
     console.error('Error fetching leaderboard data:', error);
+    alert('Cant get the api')
     // Hide loading animation in case of error
     indicator.style.display = "none";
   });
@@ -248,6 +348,7 @@ function getQuestions() {
         })
         .catch(error => {
             console.error("Error fetching questions:", error);
+            alert('Error in fetching.')
             indicator.style.display = "none"; // Hide loading animation to prevent further loading
             reject(error); // Reject promise with error
         });
@@ -304,7 +405,7 @@ function showAnimationCW(rightOrWrong) {
   if (rightOrWrong) {
     const animationDiv = document.getElementById('celebrate-correct-ans');
     animationDiv.style.display = 'block';
-    //Hide animation after 2 seconds
+    //Hide animation after 3 seconds
     setTimeout(function() {
       animationDiv.style.display = 'none';
     }, 3000); //3 seconds
@@ -312,7 +413,7 @@ function showAnimationCW(rightOrWrong) {
   else {
     const animationDiv = document.getElementById('wrong-ans');
     animationDiv.style.display = 'block';
-    //Hide animation after 2 seconds
+    //Hide animation after 3 seconds
     setTimeout(function() {
       animationDiv.style.display = 'none';
     }, 3000); //3 seconds

@@ -61,6 +61,17 @@
     height: 96vh;
 }
 
+/*loading animation for index*/
+#loading-animation-index{
+    /* Adjust overall appearance and positioning here */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1; /*shown at the front*/
+}
+
 /*left align of the container*/
 .main-screenpg .game-intro-left{
     float: left;
@@ -241,9 +252,11 @@
     border: 2.5px solid black;
     border-radius: 10px;
     display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form {
     float: left;
@@ -564,5 +577,10 @@
     /*right container for the display*/
     .main-screenpg .ingame-screen .ingame-right{
         width: 100%;
+    }
+    /*the question image is much smaller to keep in container*/
+    .main-screenpg .ingame-screen .ingame-left .question-display #qn-img{
+        width: 40%;
+        height: 40%;
     }
 }

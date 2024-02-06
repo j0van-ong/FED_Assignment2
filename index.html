@@ -23,6 +23,9 @@
             </nav>
         </header>
         <div class="game-info-container">
+            <div id="loading-animation-index">
+                <dotlottie-player src="https://lottie.host/6a9fba75-f120-4e0a-9d5f-95a4994ae53f/kI8NVyy2R4.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            </div>
             <section class="game-intro-left"> <!--Left align of screen-->
                 <img src="./Picture/header-logo.jpg"alt="Emoji Charades!"> <!--insert logo-->
                 <div class="lottiemainpg">
@@ -39,6 +42,7 @@
                         <select id="gameCategory" name="gameCategory"required>
                             <option>Song</option>
                             <option>Country</option>
+                            <option>MRT in Singapore</option>
                         </select>
                         <button onclick="switchToInGame(event)" type="submit" id="submit-givenUser">Go!</button>
                     </form>
