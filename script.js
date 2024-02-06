@@ -16,8 +16,8 @@ window.onload = function(){
 //This functions process this block when first loaded, 
 document.addEventListener("DOMContentLoaded", function () {
     //Start of commands to carry out
-    getLeaderboard(); //update at the start
-    getQuestions()  
+    getLeaderboard(); //update at the start, only for leaderboard.html
+    getQuestions()  //run when in game.html
     //returns a Promise, i need to handle it asynchronously to deal with the promise resolve value;
     .then(questionArray => {
       console.log(questionArray); //debugging
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error('Error fetching questions:', error);
       alert('Please refresh the page, error getting data');
     });
-    displayResult();
+    displayResult(); //only run for endgame.html
 })
 
 //W3 school script on showing/hiding the accordion, and added my own var to check for is click before
@@ -107,6 +107,7 @@ function switchToInGame(e){
   })
   .catch(error => { //incase of any error
     console.error('Error checking username:', error);
+    alert('Error checking validity of username with api');
   });
 }
 
@@ -165,6 +166,7 @@ function checkUsername(playerUser, category) {
       })
     .catch(error => {
       console.error('Error fetching leaderboard data:', error);
+      alert('Error getting api, refresh and make sure connect to wifi')
       reject(error);
     });
   });
@@ -219,7 +221,7 @@ function startTimer(){
   if (timer == null){
     return;
   }
-  let timeInSeconds = 180; //60*3 (3 minutes)
+  let timeInSeconds = 150; //60*2 + 30 (2 minutes 30s)
 
   // Update the timer every second
   const timerInterval = setInterval(function() {
@@ -236,6 +238,7 @@ function startTimer(){
     if (timeInSeconds < 0) {
       clearInterval(timerInterval); //stop the set interval function
       alert("Time's up!");
+      location.href = "endgame.html"; //switch page
     }
   }, 1000); // Run every second
 }
@@ -304,7 +307,7 @@ function getLeaderboard() {
 
 function getQuestions() {
   //Show loading animation
-  const indicator = document.getElementById("loading-animation-ingame");
+  const indicator = document.getElementById("loading-animation-ingame"); //check whether in-game
 
   if (indicator == null) {
     return Promise.resolve(null); // Resolve with null if indicator element is not found
@@ -352,14 +355,14 @@ function getQuestions() {
                 return array;
             }
 
-            //Take top 7 entries as our 7 questions only
-            const first7Qn = shuffledQnArray.slice(0, 7);
-            console.log(first7Qn); //debugging to show
+            //Take top 8 entries as our 8 questions only
+            const first8Qn = shuffledQnArray.slice(0, 8);
+            console.log(first8Qn); //debugging to show
 
             //Hide loading animation
             indicator.style.display = "none";
 
-            resolve(first7Qn); // Resolve the promise with the fetched questions
+            resolve(first8Qn); // Resolve the promise with the fetched questions
         })
         .catch(error => {
             console.error("Error fetching questions:", error);
@@ -374,8 +377,10 @@ function getQuestions() {
 function displayQuestions(questionArray, currentQuestionIndex){
     if (currentQuestionIndex == 0){
       localStorage.setItem('currentScore', 0); //at the very start, define first to be 0
+      localStorage.setItem('isFBclick', false);
+      localStorage.setItem('notFBClick', true);
     }
-    console.log('displaying questions');
+    console.log('displaying questions...');
     var currentQuestion = questionArray[currentQuestionIndex];
     isHintClick = false; //both var to hold the conditions for checking hint used
     hintNotClick = true;
@@ -476,7 +481,7 @@ function displayResult(){
   const star2 = document.getElementById("star2");
   const star3 = document.getElementById("star3");
 
-  //Set the image based on the player's score, total score is 70 in this case
+  //Set the image based on the player's score, total score is 80 in this case
   if (displayScore >= 60) {
       star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
       star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
@@ -500,7 +505,7 @@ function displayResult(){
   playerNameElement.textContent = "Name: " + displayUser;
   playerScoreElement.textContent = "Score: " + displayScore;
   const starRatingContainer = document.getElementById('star-rating');
-  // Make the star rating container visible
+  // Make the star rating container visible, which apply the zoom in effect
   starRatingContainer.style.display = 'flex';
 
   // Apply the zoom-in effect after a short delay
@@ -544,18 +549,30 @@ function updateLeaderboard(receivescore, name){
 }
 
 //this opens up a new tab to facebook
-var isFBclick = false;
-var notFBClick = true;
 function newtabFb(){
-  window.open("https://www.facebook.com/login.php/");
+  isFBclick = localStorage.getItem('isFBclick'); //false default
+  notFBClick = localStorage.getItem('notFBClick'); //true default
   isFBclick = true;
+  localStorage.setItem('isFBclick', true);
   if (isFBclick && notFBClick){
+    window.open("https://www.facebook.com/login.php/");
+    //change to false, so no longer activateable unless restart the game, in the displayQn. Ensures no refresh to spam points
+    localStorage.setItem('notFBClick', false);
     nowScore = localStorage.getItem('currentScore');
+    higestObtain = localStorage.getItem('highestscore');
+
     nowScore = parseInt(nowScore);
+    higestObtain = parseInt(higestObtain);
     nowScore = nowScore + 5; ///current bonus
-    whichUser = localStorage.getItem("username");
-    updateLeaderboard(nowScore, whichUser);
-    const shownewScore = document.getElementById("player-score");
-    shownewScore.textContent = "Score: " + displayScore;
+    if (nowScore > higestObtain){
+      whichUser = localStorage.getItem("username");
+      updateLeaderboard(nowScore, whichUser);
+      const shownewScore = document.getElementById("player-score");
+      shownewScore.textContent = "Score: " + nowScore;
+    } 
   }
+}
+
+function tryAgain(){
+  location.href = "ingame.html"; //only if users want the same category again, will reset
 }
