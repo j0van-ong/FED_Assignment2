@@ -1,3 +1,14 @@
+#music-btn{
+    color: white;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+#music-btn:hover{
+    background-color: black;
+    transition: 1s;
+    cursor: pointer;
+}
 /*A container to hold entire code, this changes the background for entire screen*/
 .indexMainwrapper{
     background-image: url(../Picture/bg-orangeyellow.jpg);
@@ -9,7 +20,7 @@
     overflow:auto; /* clip the content or add scrollbars if cant fit*/ 
 }
 
-/*Screen logo at the nav bar*/
+/*Screen logo at the nav bar, universal for all pages*/
 .main-screenpg header .logo {
     width:30%;
     float:left;
@@ -58,7 +69,7 @@
 /*whole container after the header*/
 .main-screenpg .game-info-container{
     width: 100%;
-    height: 96vh;
+    height: 100vh;
 }
 
 /*loading animation for index*/
@@ -569,6 +580,19 @@
 /*STYLE FOR RESPONSIVE*/
 @media screen and (max-width:650px) {
     /*INDEX.HTML*/
+    .main-screenpg header .logo {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .main-screenpg header nav{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+    }
+
     /*whole container after the header at index*/
     .main-screenpg .game-info-container{
         height: 115vh; /*to accomodate all the elements*/
@@ -607,9 +631,18 @@
     .main-screenpg .ingame-screen .ingame-right{
         width: 100%;
     }
+    .main-screenpg .ingame-screen .ingame-left .question-display{
+        justify-content: flex-start; /*push to the left*/
+    }
     /*the question image is much smaller to keep in container*/
     .main-screenpg .ingame-screen .ingame-left .question-display #qn-img{
-        width: 40%;
-        height: 40%;
+        width: 5%;
+        height: 3%;
+    }
+
+    /*endgame html*/
+    .main-screenpg .endgame-container .score-container .signboard{
+        padding-left: 0;
+        padding-right: 0;
     }
 }

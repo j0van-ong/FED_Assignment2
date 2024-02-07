@@ -5,6 +5,7 @@ var currentQuestionIndex = 0; //first question at the start
 let hintNotClick;
 let isHintClick;
 
+
 window.onload = function(){
   let hideForm  = document.getElementById("enter-game-submission");
   if (hideForm != null){
@@ -16,6 +17,12 @@ window.onload = function(){
 //This functions process this block when first loaded, 
 document.addEventListener("DOMContentLoaded", function () {
     //Start of commands to carry out
+    // Check if the user has given consent
+    if (localStorage.getItem('audioConsent') === 'true') {
+      element = document.getElementById('music-btn')
+      element.style.backgroundColor = 'black';
+      document.getElementById('bgAudio').play(); // Start audio playback
+    }
     getLeaderboard(); //update at the start, only for leaderboard.html
     getQuestions()  //run when in game.html
     //returns a Promise, i need to handle it asynchronously to deal with the promise resolve value;
@@ -39,6 +46,23 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     displayResult(); //only run for endgame.html
 })
+
+
+//Main BackgroundAudio
+function playBgAudio(id) {
+  const mainBg = document.getElementById('bgAudio');
+  const element = document.getElementById(id);
+  
+  if (mainBg != null && element.style.backgroundColor !== 'black') { //havent been consented
+      mainBg.play(); 
+      element.style.backgroundColor = 'black';
+  } else { //player want to switch back;
+      element.style.backgroundColor = ''; //
+      mainBg.pause();
+      return;
+  }
+}
+
 
 //W3 school script on showing/hiding the accordion, and added my own var to check for is click before
 function myFunction(id) {
@@ -416,6 +440,9 @@ function CheckAnswer(e){
       if (currentQuestionIndex < questions.length) {
           displayQuestions(questions, currentQuestionIndex);
           showAnimationCW(correctAns);
+          //Play Audio
+          const correctAudio = document.getElementById('correctAudio');
+          correctAudio.play();
           formclass = document.querySelector('.enter-ans-form');
           formclass.reset(); //clear the form so that its blank again
 
@@ -426,6 +453,9 @@ function CheckAnswer(e){
       }
   } else {
       //Incorrect answer
+      //Play Audio
+      const wrongAudio = document.getElementById('wrongAudio');
+      wrongAudio.play();
       var correctAns = false;
       showAnimationCW(correctAns);
       formclass = document.querySelector('.enter-ans-form');
@@ -438,18 +468,18 @@ function showAnimationCW(rightOrWrong) {
   if (rightOrWrong) {
     const animationDiv = document.getElementById('celebrate-correct-ans');
     animationDiv.style.display = 'block';
-    //Hide animation after 3 seconds
+    //Hide animation after 2.5 seconds
     setTimeout(function() {
       animationDiv.style.display = 'none';
-    }, 3000); //3 seconds
+    }, 2500); //2.5 seconds
   }
   else {
     const animationDiv = document.getElementById('wrong-ans');
     animationDiv.style.display = 'block';
-    //Hide animation after 3 seconds
+    //Hide animation after 2.5 seconds
     setTimeout(function() {
       animationDiv.style.display = 'none';
-    }, 3000); //3 seconds
+    }, 2500); //2.5 seconds
   }
 
 }
