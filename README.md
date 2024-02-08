@@ -6,6 +6,10 @@ Embark on a cognitive adventure with Emoji Charades, a user-friendly media appli
 - [GitHub Page Link to Game](https://j0van-ong.github.io/FED_EmojiCharades_website/) Link: https://j0van-ong.github.io/FED_EmojiCharades_website/
 - [Figma Link for Wireframe](https://www.figma.com/file/eJyB3E9yVFNVtOFHlYK0xL/FED_Assignment2_wireframe?type=design&node-id=0%3A1&mode=design&t=y7CU3ot0z9ItnRJ7-1) Link: https://www.figma.com/file/eJyB3E9yVFNVtOFHlYK0xL/FED_Assignment2_wireframe?type=design&node-id=0%3A1&mode=design&t=y7CU3ot0z9ItnRJ7-1
 
+## Roles of us
+-Jovan Ong: HTML, CSS, Major parts of JS, Lottie, Music and Image research
+-Thet Mon Hnin : RESTDB Creation, Fetching of RESTDB API in JS, Generating Questions
+
 ## Design Process
 ### Flexibility
 Emoji Charades stands out with its flexibility, offering a diverse range of genres in its puzzles. This unique feature allows players to tailor their gaming experience, fostering skill development across various cognitive aspects. For now, there is a options of up to 3 categories, which can easily be added more if it is well received by consumers.
