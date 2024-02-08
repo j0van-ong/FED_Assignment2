@@ -8,19 +8,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /> <!--refresh logo-->
     <!--CSS style sheets-->
-    <link rel="stylesheet" href="../css/normalize.css" type="text/css"> <!--must write-->
+    <link rel="stylesheet" href="./css/normalize.css" type="text/css"> <!--must write-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> <!--for bootstrap  template-->
-    <link rel="stylesheet" href="../css/style.css" type="text/css"> <!--must write-->
+    <link rel="stylesheet" href="./css/style.css" type="text/css"> <!--must write-->
 </head>
 <body>
     <audio id="bgAudio" autoplay loop> <!--input this audio for this page-->
-      <source src="../Audio/Sakura-Girl-Daisy-chosic.com_.mp3" type="audio/mpeg">
+      <source src="./Audio/Sakura-Girl-Daisy-chosic.com_.mp3" type="audio/mpeg">
     </audio>
     <div class="leaderboardMainwrapper"> <!--Container for whole webpage-->
         <div class="main-screenpg">
         <header> 
             <div class="logo"> 
-                <img src="../Picture/website-logo.jpg" alt="Emoji Charade"> 
+                <img src="./Picture/website-logo.jpg" alt="Emoji Charade"> 
             </div>
             <nav> <!--Navigation links-->
                 <span onclick="playBgAudio('music-btn')" id="music-btn"> <!--Music button to press for audio while gaming-->
@@ -39,7 +39,7 @@
         </div>
         <div class="leaderboardscreen"> <!--entire container for holding each top5 player container and the refresh btn, top5img text-->
             <div class="leaderboard-title"> <!--container for refresh btn and top5 img text-->
-              <img src="../Picture/leaderboard-top5.png" alt="Leaderboard Top 5">
+              <img src="./Picture/leaderboard-top5.png" alt="Leaderboard Top 5">
               <button onclick="refreshLeaderboard()" id="refresh"> <!--button for refreshing api-->
                 <span class="material-symbols-outlined" style="margin: 0;"> <!--bootstrap reload icon-->
                 restart_alt
@@ -50,30 +50,30 @@
             <div class="leaderboard-container">
                 <ul class="leaderboard-list"> <!--container where all the sub container is contained to display the user leaderboard, uses list as template-->
                   <li class="leaderboard-item" style="background-color: rgb(248, 73, 73);">
-                    <span class="rank"><img src="../Picture/first-place.png" alt="1st-place"></span>
+                    <span class="rank"><img src="./Picture/first-place.png" alt="1st-place"></span>
                     <span class="game-name1" data-username=""></span> <!--data-username and score is data-attribute to store the info from restDB-->
                     <span class="score1" data-score=""></span> <!--each tag of game-name{?} and score is arranged by increment, easier to loop thru and add-->
                     <dotlottie-player src="https://lottie.host/9e6f351e-41d7-4ac4-b544-ae231d12d2d8/VZF7ll30uo.json" background="transparent" speed="1" style="width: 13.5%; height: 13.5%;" loop autoplay></dotlottie-player>
                   </li>
                   <li class="leaderboard-item" style="background-color: rgb(83, 140, 255);">
-                    <span class="rank"><img src="../Picture/second-place.png" alt="2nd-place"></span>
+                    <span class="rank"><img src="./Picture/second-place.png" alt="2nd-place"></span>
                     <span class="game-name2" data-username=""></span>
                     <span class="score2" data-score=""></span>
                     <dotlottie-player src="https://lottie.host/24ccf060-97d2-4ef6-9680-4206181cedf4/yzGBiaWSwF.json" background="transparent" speed="1" style="width: 12%; height: 12%; margin: 0;" loop autoplay></dotlottie-player>                  </li>
                   <li class="leaderboard-item" style="background-color: rgb(69, 244, 96);">
-                    <span class="rank"><img src="../Picture/third-place.png" alt="3rd-place"></span>
+                    <span class="rank"><img src="./Picture/third-place.png" alt="3rd-place"></span>
                     <span class="game-name3" data-username=""></span>
                     <span class="score3" data-score=""></span>
                     <dotlottie-player src="https://lottie.host/58a0b267-fb8f-4d3c-ab27-594e5b52506b/tf3tJwkeCx.json" background="transparent" speed="1" style="width: 11%; height: 11%;" loop autoplay></dotlottie-player>
                   </li>
                   <li class="leaderboard-item" style="background-color: rgb(255, 200, 2);">
-                    <span class="rank"><img src="../Picture/fourth-place.png" alt="4th-place"></span>
+                    <span class="rank"><img src="./Picture/fourth-place.png" alt="4th-place"></span>
                     <span class="game-name4" data-username=""></span>
                     <span class="score4" data-score=""></span>
                     <dotlottie-player src="https://lottie.host/6843b977-ed2d-473c-b07b-85f0dbecee47/a9Eu8o02AE.json" background="transparent" speed="1" style="width: 9%; height: 9%;" loop autoplay></dotlottie-player>
                   </li>
                   <li class="leaderboard-item" style="background-color: rgb(185, 130, 247);">
-                    <span class="rank"><img src="../Picture/fifth-place.png" alt="5th-place"></span>
+                    <span class="rank"><img src="./Picture/fifth-place.png" alt="5th-place"></span>
                     <span class="game-name5" data-username=""></span>
                     <span class="score5" data-score=""></span>
                     <dotlottie-player src="https://lottie.host/bc435db1-a956-4344-9450-065714dfd8d3/cAYr4lRhXv.json" background="transparent" speed="1" style="width: 8%; height: 8%;" loop autoplay></dotlottie-player>
@@ -84,6 +84,6 @@
         </div>
     </div>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> <!--Lottie script-->
-<script src="../js/script.js"></script>
+<script src="./js/script.js"></script>
 </body>
 </html>
