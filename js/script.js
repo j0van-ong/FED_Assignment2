@@ -523,21 +523,21 @@ function displayResult(){
 
   //Set the image based on the player's score, total score is 80 in this case
   if (displayScore >= 60) {
-      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
+      star1.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview.png">';
+      star2.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview.png">';
+      star3.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview.png">';
   } else if (displayScore >= 40) {
-      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star1.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview.png">';
+      star2.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview.png">';
+      star3.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview (1).png">';
   } else if (displayScore >= 20) {
-      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
-      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star1.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview.png">';
+      star2.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview (1).png">';
+      star3.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview (1).png">';
   } else {
-      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
-      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
-      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star1.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview (1).png">';
+      star2.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview (1).png">';
+      star3.innerHTML = '<img src="../Picture/game-star-isolated-removebg-preview (1).png">';
   }
   indicatorLoader.style.display = 'none';
 

@@ -7,29 +7,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <!--CSS style sheets-->
-    <link rel="stylesheet" href="css/normalize.css" type="text/css"> <!--must write-->
+    <link rel="stylesheet" href="../css/normalize.css" type="text/css"> <!--must write-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="css/style.css" type="text/css"> <!--must write-->
+    <link rel="stylesheet" href="../css/style.css" type="text/css"> <!--must write-->
 </head>
 <body>
     <!--audio tag placed here-->
     <audio id="bgAudio" autoplay loop> <!--input this audio for this page, diff audio from the rest-->
-        <source src="./Audio/Wallpaper(chosic.com).mp3" type="audio/mpeg">
+        <source src="../Audio/Wallpaper(chosic.com).mp3" type="audio/mpeg">
     </audio>
     <audio id="correctAudio"> <!--triggered to play by submit ans btn-->
-        <source src="./Audio/Correct-Answer-Sound-Effect.mp3" type="audio/mpeg">
+        <source src="../Audio/Correct-Answer-Sound-Effect.mp3" type="audio/mpeg">
     </audio>
     <audio id="wrongAudio"> <!--triggered to play by submit ans btn-->
-        <source src="./Audio/wrong-answer-sound-effect.mp3" type="audio/mpeg">
+        <source src="../Audio/wrong-answer-sound-effect.mp3" type="audio/mpeg">
     </audio>
     <audio id="failAudio"> <!--triggered to play by submit ans btn-->
-        <source src="./Audio/Fail-sound-effect.mp3" type="audio/mpeg">
+        <source src="../Audio/Fail-sound-effect.mp3" type="audio/mpeg">
     </audio>
     <div class="inGameMainwrapper"> <!--Container for whole webpage-->
         <div class="main-screenpg">
         <header> 
             <div class="logo"> 
-                <img src="./Picture/website-logo.jpg" alt="Emoji Charade"> 
+                <img src="../Picture/website-logo.jpg" alt="Emoji Charade"> 
             </div>
             <nav> <!--Navigation links--> 
                 <span onclick="playBgAudio('music-btn')" id="music-btn"> <!--Music button to press for audio while gaming, icon template from bootstrap-->
@@ -93,5 +93,5 @@
     </div>
 <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> <!--Lottie script-->
 </body>
-<script src="script.js"></script>
+<script src="../js/script.js"></script>
 </html>
