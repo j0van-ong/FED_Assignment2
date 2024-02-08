@@ -1,6 +1,12 @@
 # Emoji Charades - An interactive emoji puzzle game 
 Embark on a cognitive adventure with Emoji Charades, a user-friendly media application tailored to challenge and entertain teenagers, particularly students. This brain-boosting game provides a platform for user to exercise their minds through engaging puzzle games, offering a high-quality digital experience.
 
+## Important Links for Asg Submission
+- [Video Submission pitch](https://drive.google.com/file/d/1LiuotwKXBYuRX2BW9ZmCjDuNZYlNWYVn/view?usp=sharing) Link: https://drive.google.com/file/d/1LiuotwKXBYuRX2BW9ZmCjDuNZYlNWYVn/view?usp=sharing
+- [GitHub Page Link to Game](https://j0van-ong.github.io/FED_EmojiCharades_website/) Link: https://j0van-ong.github.io/FED_EmojiCharades_website/
+- [Figma Link for Wireframe](https://www.figma.com/file/eJyB3E9yVFNVtOFHlYK0xL/FED_Assignment2_wireframe?type=design&node-id=0%3A1&mode=design&t=y7CU3ot0z9ItnRJ7-1) Link: https://www.figma.com/file/eJyB3E9yVFNVtOFHlYK0xL/FED_Assignment2_wireframe?type=design&node-id=0%3A1&mode=design&t=y7CU3ot0z9ItnRJ7-1
+- 
+
 ## Design Process
 ### Flexibility
 Emoji Charades stands out with its flexibility, offering a diverse range of genres in its puzzles. This unique feature allows players to tailor their gaming experience, fostering skill development across various cognitive aspects. For now, there is a options of up to 3 categories, which can easily be added more if it is well received by consumers.
@@ -116,6 +122,7 @@ For this application, we will be dealing with two datasets,
 ### Some bugs
 - So far tested no bugs, although user may attempt to refresh the endgame.html to spam points. Intend to redirect them to homepage if refresh but it is inefficent
 - Responsive might not be perfect, but it is usable.
+- If u open using VS Code, the music will be paused when switching between pages. However, this is not the case on GitHub Live Link, where it will continue playing. You would have to click twice to close if already enabled.
 
 ## Justifications
 ### Usage of advertisment block
@@ -135,6 +142,7 @@ This can help us to promote our game website by our players who may hopefully co
 - [Bootstrap Icons](https://icons.getbootstrap.com/)
 - [W3 School Accordion Template Code](https://www.w3schools.com/w3css/w3css_accordions.asp)
 - [Youtube to MP3 converter](https://mp3-convert.org/youtube-to-mp3-converterss/)
+- [LottieFiles.com free to use animation](https://app.lottiefiles.com/)
 
 ### Media
 - The Emojis used are obtained from:
@@ -162,3 +170,4 @@ This can help us to promote our game website by our players who may hopefully co
 - The music I've obtained is downloaded from Chosic website
 - The rest of the audio has been used from Youtube respective publisher, as well as converting it using MP3 Converter.
 - Fancy Font images are generated at fontmeme.com
+- The various LottieFile animation is taken from respective users that is free to use.
