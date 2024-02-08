@@ -5,7 +5,6 @@ Embark on a cognitive adventure with Emoji Charades, a user-friendly media appli
 - [Video Submission pitch](https://drive.google.com/file/d/1LiuotwKXBYuRX2BW9ZmCjDuNZYlNWYVn/view?usp=sharing) Link: https://drive.google.com/file/d/1LiuotwKXBYuRX2BW9ZmCjDuNZYlNWYVn/view?usp=sharing
 - [GitHub Page Link to Game](https://j0van-ong.github.io/FED_EmojiCharades_website/) Link: https://j0van-ong.github.io/FED_EmojiCharades_website/
 - [Figma Link for Wireframe](https://www.figma.com/file/eJyB3E9yVFNVtOFHlYK0xL/FED_Assignment2_wireframe?type=design&node-id=0%3A1&mode=design&t=y7CU3ot0z9ItnRJ7-1) Link: https://www.figma.com/file/eJyB3E9yVFNVtOFHlYK0xL/FED_Assignment2_wireframe?type=design&node-id=0%3A1&mode=design&t=y7CU3ot0z9ItnRJ7-1
-- 
 
 ## Design Process
 ### Flexibility
