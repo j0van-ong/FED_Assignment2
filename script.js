@@ -2,11 +2,10 @@ const APIKEY = '65bb98eaca96575e0b277ca0' //WILL BE USED FOR RESTDB API, availab
 
 let questions; //make it a global variable first
 var currentQuestionIndex = 0; //first question at the start
-//variables used to check if the user wants hints
-let hintNotClick; 
+let hintNotClick;
 let isHintClick;
 
-// This displays the username textbox and the category selection after the user click on the button 'PlayNow!'
+
 window.onload = function(){
   let hideForm  = document.getElementById("enter-game-submission");
   if (hideForm != null){
@@ -30,8 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(questionArray); //debugging
       questions = questionArray; //asssign to a global variable when done for displayquestion to access later for sub qn
       console.log(questions);
-      if (questionArray != null && Array.isArray(questionArray)) { ///should be a array of object as it is returned from restdb
-        displayQuestions(questionArray, currentQuestionIndex); //Calls the function that will shows the quiz questions
+      if (questionArray != null && Array.isArray(questionArray)) { ///shd be a array of object as it is returned from restdb
+        displayQuestions(questionArray, currentQuestionIndex); //
         startTimer(); // Start the countdown when the page is fully loaded, when at ingame.html
       }
       else { //this is a null, as indicator cant be found, meaning that our page is not on ingame
@@ -50,18 +49,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Main BackgroundAudio
 function playBgAudio(id) {
-  //Get the main background audio element and the element triggering the audio control
   const mainBg = document.getElementById('bgAudio');
   const element = document.getElementById(id);
   
-  //Check if the main background audio exists and the element has not been consent (not black)
   if (mainBg != null && element.style.backgroundColor !== 'black') { //havent been consented
-      //Play the main background audio and change background color to indicate consent (black)
       mainBg.play(); 
       element.style.backgroundColor = 'black';
   } else { //player want to switch back;
-      element.style.backgroundColor = ''; //reset the background colour to its default value
-      mainBg.pause(); //pause the music
+      element.style.backgroundColor = ''; //
+      mainBg.pause();
       return;
   }
 }
@@ -72,10 +68,9 @@ function myFunction(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
-    isHintClick = true; 
-    //To check if the hint is clicked and show relevant hint to the question
+    isHintClick = true;
     if (isHintClick && hintNotClick){
-      console.log("Hint clicked already")
+      console.log("Hint clicked alr")
       //deduction of score
       currentScore = localStorage.getItem('currentScore');
       storedInt = parseInt(currentScore); // Parse string to integer since localstorage stores string
@@ -102,7 +97,7 @@ function playnow(){
   document.getElementById("enter-game-submission").style.display = "block";
 }
 
-//change from index.html to ingame.html overall purpose, with validation
+//change from index.html to ingame.html overall purpose, with validaito
 function switchToInGame(e){
   // Prevent the default form submission behavior
   e.preventDefault();
@@ -128,8 +123,8 @@ function switchToInGame(e){
     console.log("User proceeds on: " + isActionConfirm); //debugging purposes
     if (isActionConfirm) {
       localStorage.setItem("category", category); //confirm the category too, save into storage so that it saves the details
-      console.log("Submitted details: ", playerUser, category); //test 
-      location.href = "ingame.html"; //leads to the ingame page of the game
+      console.log("Submitted details: ", playerUser, category);
+      location.href = "ingame.html";
     } else {
       loadindex.style.display = 'none'; //hide loading
       return; //no further action
@@ -146,7 +141,7 @@ function checkUsername(playerUser, category) {
   //new Promise with .then() to wait for the questions to be fetched and processed 
   return new Promise((resolve, reject) => { //make 
     const settings = {
-      method: "GET", //use GET to retrieve information for the database
+      method: "GET", 
       headers: {
         "Content-Type": "application/json",
         "x-apikey": APIKEY, 
@@ -154,25 +149,24 @@ function checkUsername(playerUser, category) {
       },
     };
 
-    //send our AJAX request over to the DB and print response of the RESTDB storage to console
     fetch("https://emojicharade-161f.restdb.io/rest/leaderboard", settings)
       .then(response => response.json())
       .then(data => {
-        var isFound = false; //bool variable to check whether if the user exists originally
-        console.log(data); //test
+        var isFound = false;
+        console.log(data);
         for (let i = 0; i < data.length; i++) {
-          if (data[i].username === playerUser) { // check if username in database
-            isFound  = true; //if true then set the bool variable to true
-            var foundscore = data[i].score; //assign the user previous highest score
-            var foundId = data[i]._id; //assign the user id from database
+          if (data[i].username === playerUser) {
+            isFound  = true;
+            var foundscore = data[i].score;
+            var foundId = data[i]._id;
             break;
           }
         }
 
-        if (isFound){ //if user is an existing user
-          const msg = `You have selected an existing username.\nUsername: ${playerUser}\nCategory: ${category}\nContinue?`; //display message
+        if (isFound){
+          const msg = `You have selected an existing username.\nUsername: ${playerUser}\nCategory: ${category}\nContinue?`;
           const continueWUser = window.confirm(msg);
-          if (continueWUser) { //if user press to continue with the existing user in the db store the user data in local storage for future use
+          if (continueWUser) {
             localStorage.setItem("username", playerUser);
             localStorage.setItem("_id", foundId);
             localStorage.setItem("highestscore", foundscore);
@@ -182,11 +176,11 @@ function checkUsername(playerUser, category) {
             resolve(false);
           }
         }
-        else { //if user is not in the database 
-          var msg = `You have selected a new unused username.\nUsername: ${playerUser}\nCategory: ${category}\nContinue?`; //display message
+        else {
+          var msg = `You have selected a new unused username.\nUsername: ${playerUser}\nCategory: ${category}\nContinue?`;
           let continueWUser = window.confirm(msg);
-          if (continueWUser) { 
-            MakeNewPlayer(playerUser) //call function to assign new user
+          if (continueWUser) {
+            MakeNewPlayer(playerUser)
               .then(() => resolve(true))
               .catch(error => reject(error));
           } else {
@@ -195,7 +189,6 @@ function checkUsername(playerUser, category) {
         }
 
       })
-      //validations
     .catch(error => {
       console.error('Error fetching leaderboard data:', error);
       alert('Error getting api, refresh and make sure connect to wifi')
@@ -228,7 +221,6 @@ function MakeNewPlayer(playerUser){
     fetch("https://emojicharade-161f.restdb.io/rest/leaderboard", settings)
       .then(response => response.json())
       .then(data => {
-        //set data to localStorage for future use
         localStorage.setItem("username", playerUser);
         localStorage.setItem("_id", data._id);
         localStorage.setItem("highestscore", data.score);
@@ -381,10 +373,9 @@ function getQuestions() {
             const shuffledQnArray = shuffleArray(questionInfo);
             //Function to shuffle
             function shuffleArray(array) {
-                // Iterate over the array starting from the last element
                 for (let i = array.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1)); //generates a random index within the range of current element and the first element
-                    [array[i], array[j]] = [array[j], array[i]]; //swap the current element with a randomly selected element
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
                 }
                 return array;
             }
@@ -418,7 +409,7 @@ function displayQuestions(questionArray, currentQuestionIndex){
     var currentQuestion = questionArray[currentQuestionIndex];
     isHintClick = false; //both var to hold the conditions for checking hint used
     hintNotClick = true;
-    document.getElementById('qn-img').innerHTML = '<img src="' + currentQuestion.question + '" alt="Question Image">'; //get question image
+    document.getElementById('qn-img').innerHTML = '<img src="' + currentQuestion.question + '" alt="Question Image">';
     document.getElementById('hinttext').innerText = currentQuestion.hint;
     document.getElementById('progress').innerText = (currentQuestionIndex +1) + '/' + questionArray.length; //show progress bar
 }
@@ -444,14 +435,14 @@ function CheckAnswer(e){
       currentScore = localStorage.getItem('currentScore');
       storedInt = parseInt(currentScore); // Parse string to integer since localstorage stores string
       storedInt = storedInt + 10;
-      localStorage.setItem('currentScore', storedInt); //storing current score
+      localStorage.setItem('currentScore', storedInt);
 
-      currentQuestionIndex++; //incrementing the question index to display next question
-      if (currentQuestionIndex < questions.length) { 
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
           displayQuestions(questions, currentQuestionIndex);
           showAnimationCW(correctAns);
           //Play Audio
-          const correctAudio = document.getElementById('correctAudio'); //audio added for correct answer
+          const correctAudio = document.getElementById('correctAudio');
           correctAudio.play();
           formclass = document.querySelector('.enter-ans-form');
           formclass.reset(); //clear the form so that its blank again
@@ -464,7 +455,7 @@ function CheckAnswer(e){
   } else {
       //Incorrect answer
       //Play Audio
-      const wrongAudio = document.getElementById('wrongAudio'); //audio for wrong answer
+      const wrongAudio = document.getElementById('wrongAudio');
       wrongAudio.play();
       var correctAns = false;
       showAnimationCW(correctAns);
@@ -476,7 +467,7 @@ function CheckAnswer(e){
 
 function showAnimationCW(rightOrWrong) {
   if (rightOrWrong) {
-    const animationDiv = document.getElementById('celebrate-correct-ans'); //show animaiton for correct answers
+    const animationDiv = document.getElementById('celebrate-correct-ans');
     animationDiv.style.display = 'block';
     //Hide animation after 2.5 seconds
     setTimeout(function() {
@@ -484,7 +475,7 @@ function showAnimationCW(rightOrWrong) {
     }, 2500); //2.5 seconds
   }
   else {
-    const animationDiv = document.getElementById('wrong-ans'); //show animation for wrong answer
+    const animationDiv = document.getElementById('wrong-ans');
     animationDiv.style.display = 'block';
     //Hide animation after 2.5 seconds
     setTimeout(function() {
@@ -522,15 +513,15 @@ function displayResult(){
   const star3 = document.getElementById("star3");
 
   //Set the image based on the player's score, total score is 80 in this case
-  if (displayScore >= 60) {
+  if (displayScore >= 65) {
       star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
       star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
       star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-  } else if (displayScore >= 40) {
+  } else if (displayScore >= 45) {
       star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
       star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
       star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
-  } else if (displayScore >= 20) {
+  } else if (displayScore >= 25) {
       star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
       star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
       star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
@@ -570,9 +561,8 @@ function updateLeaderboard(receivescore, name){
     "score": receivescore
   };
 
-  //Create our AJAX settings
   let settings = {
-    method: "PUT", //use PUT to update the user score
+    method: "PUT", 
     headers: {
       "Content-Type": "application/json", 
       "x-apikey": APIKEY,
@@ -602,7 +592,6 @@ function newtabFb(){
     nowScore = localStorage.getItem('currentScore');
     higestObtain = localStorage.getItem('highestscore');
 
-    //convert score to int
     nowScore = parseInt(nowScore);
     higestObtain = parseInt(higestObtain);
     nowScore = nowScore + 5; ///current bonus
