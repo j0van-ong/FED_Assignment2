@@ -13,14 +13,14 @@ window.onload = function(){
     hideForm.style.display = "none";
   }
 
-}
+};
 
 //This functions process this block when first loaded, 
 document.addEventListener("DOMContentLoaded", function () {
     //Start of commands to carry out
     // Check if the user has given consent
     if (localStorage.getItem('audioConsent') === 'true') {
-      element = document.getElementById('music-btn')
+      element = document.getElementById('music-btn');
       element.style.backgroundColor = 'black';
       document.getElementById('bgAudio').play(); // Start audio playback
     }
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
       alert('Please refresh the page, error getting data');
     });
     displayResult(); //only run for endgame.html
-})
+});
 
 
 //Main BackgroundAudio
@@ -65,7 +65,7 @@ function playBgAudio(id) {
       mainBg.pause(); //pause the music
       return;
   }
-}
+};
 
 
 //W3 school script on showing/hiding the accordion, and added my own var to check for is click before
@@ -95,12 +95,12 @@ function myFunction(id) {
   else { 
     x.className = x.className.replace(" w3-show", "");
   }
-}
+};
 
 //This function checks if user clicks on the playnow button in index.html, then shows the username input block
 function playnow(){
   document.getElementById("enter-game-submission").style.display = "block";
-}
+};
 
 //change from index.html to ingame.html overall purpose, with validation
 function switchToInGame(e){
@@ -121,7 +121,7 @@ function switchToInGame(e){
     console.log("Username cannot be empty."); //test
     alert("Username cannot be empty.") //PROMPT USER
     return; 
-  }
+  };
   //handle asynchronous operations, so that it only returns after fetching and not get a value of undefined
   checkUsername(playerUser, category)
   .then(isActionConfirm => {
@@ -139,7 +139,7 @@ function switchToInGame(e){
     console.error('Error checking username:', error);
     alert('Error checking validity of username with api');
   });
-}
+};
 
 //This functions checks for existing user, then prompts to confirm if user has decided. save to local storage. if not, make new using function, 
 function checkUsername(playerUser, category) {
@@ -202,7 +202,7 @@ function checkUsername(playerUser, category) {
       reject(error);
     });
   });
-}
+};
 
 //Make new player function, only called if DeterminePlayer cant find the user. new promise is needed so that the function waits for it
 function MakeNewPlayer(playerUser){
@@ -245,7 +245,7 @@ function MakeNewPlayer(playerUser){
 function refreshLeaderboard(){
   console.log("Buttonclicked"); // test to see if runs
   getLeaderboard();
-}
+};
 
 //call last, begins running after everything is done.
 function startTimer(){
@@ -523,21 +523,21 @@ function displayResult(){
 
   //Set the image based on the player's score, total score is 80 in this case
   if (displayScore >= 60) {
-      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
+      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png" alt ="Stars icon">';
+      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png" alt ="Stars icon">';
+      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png" alt ="Stars icon">';
   } else if (displayScore >= 40) {
-      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png" alt ="Stars icon">';
+      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png" alt ="Stars icon">';
+      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png" alt ="Unfilled Stars icon">';
   } else if (displayScore >= 20) {
-      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png">';
-      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
-      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview.png" alt ="Stars icon">';
+      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png" alt ="Unfilled Stars icon">';
+      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png" alt ="Unfilled Stars icon">';
   } else {
-      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
-      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
-      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png">';
+      star1.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png" alt ="Unfilled Stars icon">';
+      star2.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png" alt ="Unfilled Stars icon">';
+      star3.innerHTML = '<img src="./Picture/game-star-isolated-removebg-preview (1).png" alt ="Unfilled Stars icon">';
   }
   indicatorLoader.style.display = 'none';
 
