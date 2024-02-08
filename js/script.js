@@ -1,7 +1,7 @@
 const APIKEY = '65bb98eaca96575e0b277ca0' //WILL BE USED FOR RESTDB API, available out there as global var
 
 let questions; //make it a global variable first
-var currentQuestionIndex = 0; //first question at the start
+var currentQuestionIndex = 0; //first question at the start, is what causes the retry again to work
 //variables used to check if the user wants hints
 let hintNotClick; 
 let isHintClick;
@@ -347,7 +347,7 @@ function getQuestions() {
   }
   indicator.style.display = "block";
 
-  //new Promise with .then() to wait for the questions to be fetched and processed 
+  //new promise with .then() to wait for the questions to be fetched and processed 
   return new Promise((resolve, reject) => {
     // Create our AJAX settings
     let settings = {
