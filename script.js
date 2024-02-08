@@ -12,7 +12,6 @@ window.onload = function(){
   if (hideForm != null){
     hideForm.style.display = "none";
   }
-
 }
 
 //This functions process this block when first loaded, 
@@ -87,7 +86,9 @@ function myFunction(id) {
       localStorage.setItem('currentScore', storedInt);
 
       hintNotClick = false; //can no longer trigger this if function as only once, reset by displayquestions
-      alert('Hints used! -5 Points');
+      //Play fail audio
+      const failAudio = document.getElementById('failAudio');
+      failAudio.play();
 
     }
   } 
@@ -606,12 +607,13 @@ function newtabFb(){
     higestObtain = parseInt(higestObtain);
     nowScore = nowScore + 5; ///current bonus
     if (nowScore > higestObtain){
-      //updating user information in restdb
+      //updating user information in restdb if the score now is more than his previous highest
       whichUser = localStorage.getItem("username");
       updateLeaderboard(nowScore, whichUser);
-      const shownewScore = document.getElementById("player-score");
-      shownewScore.textContent = "Score: " + nowScore;
     } 
+    //update the endgame to show latest score after sharing to fb
+    const shownewScore = document.getElementById("player-score");
+    shownewScore.textContent = "Score: " + nowScore;
   }
 }
 
