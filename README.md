@@ -8,6 +8,7 @@ Embark on a cognitive adventure with Emoji Charades, a user-friendly media appli
 
 ## Roles of us
 -Jovan Ong: HTML, CSS, Major parts of JS, Lottie, Music and Image research
+
 -Thet Mon Hnin : RESTDB Creation, Fetching of RESTDB API in JS, Generating Questions, Writing README
 
 ## Design Process
