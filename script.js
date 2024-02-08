@@ -597,9 +597,9 @@ function newtabFb(){
     if (nowScore > higestObtain){
       whichUser = localStorage.getItem("username");
       updateLeaderboard(nowScore, whichUser);
-      const shownewScore = document.getElementById("player-score");
-      shownewScore.textContent = "Score: " + nowScore;
     } 
+    const shownewScore = document.getElementById("player-score");
+    shownewScore.textContent = "Score: " + nowScore;
   }
 }
 

@@ -34,7 +34,7 @@
             </nav>
         </header>
         <div class="game-info-container">
-            <div id="loading-animation-index">
+            <div id="loading-animation-index"> <!--div for animation, hidden default-->
                 <dotlottie-player src="https://lottie.host/6a9fba75-f120-4e0a-9d5f-95a4994ae53f/kI8NVyy2R4.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
             </div>
             <section class="game-intro-left"> <!--Left align of screen-->
@@ -42,20 +42,20 @@
                 <div class="lottiemainpg">
                     <dotlottie-player src="https://lottie.host/b9d054a5-1d81-4f07-aeea-6afb1bb1d874/LOexDMVABS.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></dotlottie-player>
                 </div>
-                <div class="game-intro-text"> 
+                <div class="game-intro-text"> <!--div to contain the para of text-->
                     Embark on a cognitive adventure with Emoji Charades, a game designed to challenge and entertain teenagers, especially students! This brain-boosting game provides a platform for users to exercise their minds through engaging puzzle games
                 </div>
                 <button onclick="playnow()" id="playnow">Play Now!</button>
                 <div id="enter-game-submission"> <!--inputing username form-->
-                    <form class="enteruserform">
+                    <form class="enteruserform"> <!--hidden at start, only if user wants to play-->
                         <label for="username" style="font-family: 'Lato', sans-serif; color:white; font-weight: bolder;">Username:</label>
                         <input type ="text" placeholder="Enter a existing/new username..." id = "username" name="username1" required>
-                        <select id="gameCategory" name="gameCategory"required>
+                        <select id="gameCategory" name="gameCategory"required> <!---list of category, default shown is song-->
                             <option>Song</option>
                             <option>Country</option>
                             <option>MRT in Singapore</option>
                         </select>
-                        <button onclick="switchToInGame(event)" type="submit" id="submit-givenUser">Go!</button>
+                        <button onclick="switchToInGame(event)" type="submit" id="submit-givenUser">Go!</button> <!--swtich to ingame w the function on click-->
                     </form>
                 </div>
             </section>

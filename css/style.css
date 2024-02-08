@@ -1,14 +1,17 @@
+/*this is applicable for all pages, uses the same tag to play music*/
 #music-btn{
     color: white;
     padding: 10px;
     border-radius: 30px;
 }
 
+/*play music hovering animation*/
 #music-btn:hover{
     background-color: black;
     transition: 1s;
     cursor: pointer;
 }
+/*Start of index html*/
 /*A container to hold entire code, this changes the background for entire screen*/
 .indexMainwrapper{
     background-image: url(../Picture/bg-orangeyellow.jpg);
@@ -40,7 +43,7 @@
     margin-right: 2%;
     margin-top: 30px;
     width:66%;
-    float: left;
+    float: left; /*stick to left, move to previous column if there is space*/
 }
 
 /*styling of the individual button of nav*/
@@ -78,7 +81,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /*move both horizontally and vertically,*/
     display: none;
     z-index: 1; /*shown at the front*/
 }
@@ -138,7 +141,7 @@
 /*lightbulb background pic*/
 .main-screenpg .game-info-container .game-intro-right{
     float: left;
-    width: 35%;
+    width: 35%; /*left-align and intro-right will make up to about ~100%, full width*/
     background-image: url(../Picture/emoji-lightbulb-removebg-preview.png);
     background-size: cover;
     height: 96vh;
@@ -151,6 +154,7 @@
     width: 100%;
     margin-top: 0;
 }
+
 /*selecting go before proceeding to the main game*/
 .main-screenpg #enter-game-submission .enteruserform input[type=text], select{
     width: 50%;
@@ -159,12 +163,14 @@
     display: inline-block; /*able to apply width and padding to this input box*/
     border: 1px solid #101010;
     border-radius: 4px;
-    box-sizing: border-box;
+    box-sizing: border-box; /*include padding and border*/
 }
-/*style for choosing the category*/
+
+/*styling of choosing the category*/
 .main-screenpg #enter-game-submission .enteruserform select{
     margin-left: 11%; /*align with username form */
 }
+
 /*selecting go button*/
 .main-screenpg #enter-game-submission .enteruserform #submit-givenUser{
     width: 100px;
@@ -177,7 +183,7 @@
     margin-left: 50px;
     margin-top: 10px;
     border-radius: 4px;
-    cursor: pointer; 
+    cursor: pointer; /*creates the animation when user cursor lands on this button*/
 }
 /*Hovering for button go*/
 .main-screenpg #enter-game-submission .enteruserform #submit-givenUser:hover{
@@ -205,7 +211,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /*move both horizontally and vertically,*/
     display: none;
     z-index: 1; /*shown at the front*/
 }
@@ -216,7 +222,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /*move both horizontally and vertically,*/
     display: none;
     z-index: 1; /*shown at the front*/
 }
@@ -227,7 +233,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /*move both horizontally and vertically,*/
     display: none;
     z-index: 1; /*shown at the front*/
 }
@@ -241,7 +247,7 @@
     padding-top: 10px; /*spacing from top to centralise*/
 }
 
-
+/*styling of the black rectangle container that holds the timer*/
 .main-screenpg .ingame-screen .ingame-left #timerid{
     padding: 10px 12px; /*top-bot, left-right */
     background-color: black;
@@ -254,7 +260,7 @@
     font-size: 20px; 
 }
 
-
+/*the question container, acting as a screen for display*/
 .main-screenpg .ingame-screen .ingame-left .question-display {
     margin-top: 10px;
     height: 450px;
@@ -262,13 +268,12 @@
     width: 100%;
     border: 2.5px solid black;
     border-radius: 10px;
-    display: flex;
-    display: flex;
-    justify-content: center;
+    display: flex; 
+    justify-content: center; /*question img is placed at the center*/
     align-items: center;
 }
 
-
+/*the form container styling*/
 .main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form {
     float: left;
     padding-left: 2%;
@@ -276,7 +281,7 @@
     margin-top: 0;
 }
 
-
+/*styling of textboc for user to type answer*/
 .main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form input[type=text], select{
     width: 40%;
     margin-top: 8px;
@@ -284,9 +289,10 @@
     display: inline-block; /*able to apply width and padding to this input box*/
     border: 1px solid #000000;
     border-radius: 4px;
-    box-sizing: border-box;
+    box-sizing: border-box; /*include padding and border*/
 }
 
+/*styling of submit ans button*/
 .main-screenpg .ingame-screen .ingame-left #enter-game-answer .enter-ans-form .submit-answer{
     width: 95px;
     background-color: rgb(15, 175, 0);
@@ -295,7 +301,7 @@
     padding: 10px 12px;
     border: 3px solid green;
     display: inline-block;
-    margin-left: 30px;
+    margin-left: 30px; /*spacing from the input textbox*/
     margin-top: 10px;
     border-radius: 4px;
     cursor: pointer; 
@@ -313,12 +319,14 @@
     height: 100vh;
 }
 
+/*sub container holding the progress bar, ads*/
 .main-screenpg .ingame-screen .ingame-right .right-banner{
     padding-left: 10px;
     padding-right: 10px;
     height: 90vh;
 }
 
+/*the div container where it holds the progress and accordion*/
 .main-screenpg .ingame-screen .ingame-right .right-banner .game-features{
     width: 100%;
     border-radius: 10px;
@@ -327,6 +335,7 @@
     border: 3px solid white;
 }
 
+/*progress styling*/
 .main-screenpg .ingame-screen .ingame-right .right-banner .game-features .status{
     margin-top: 5px;
     margin-left: 5px;
@@ -335,6 +344,7 @@
     font-size: 18px;
 }
 
+/*the styling of button to click for dropdown of hint*/
 .main-screenpg .ingame-screen .ingame-right .right-banner .game-features .hint-button{
     width: 100%;
     padding: 10px 12px;
@@ -348,18 +358,20 @@
     cursor: pointer;
 }
 
+/*the style of text inside the dropdown*/
 .main-screenpg .ingame-screen .ingame-right .right-banner .game-features #Demo1{
     color: white;
     font-weight: bold;
 }
 
+/*lottie advertisement animation*/
 .main-screenpg .ingame-screen .ingame-right .right-banner #advertisement{
     margin-top: 5px;
     color:white;
     font-weight: 500;
 }
 
-/*Leaderboard html css*/
+/*start of Leaderboard html css*/
 
 /*A container to hold entire code, this changes the background for entire screen*/
 .leaderboardMainwrapper{
@@ -367,6 +379,7 @@
     background-size: cover;
 }
 
+/*container to hold the overall elements on that page*/
 .main-screenpg .leaderboardscreen {
     width: 100%;
     padding-left: 2%;
@@ -384,7 +397,7 @@
     flex-wrap: wrap;
 }
 
-/*refresh button css*/
+/*refresh button css styling*/
 .main-screenpg .leaderboardscreen .leaderboard-title #refresh {
     background-color: rgb(15, 175, 0);
     color: rgb(255, 255, 255);
@@ -397,7 +410,7 @@
     cursor: pointer; 
 }
 
-/*css for leaderboard top 5 img*/
+/*css for leaderboard top 5 img design*/
 .main-screenpg .leaderboardscreen .leaderboard-title img {
     width: 450px;
     height: 40px;
@@ -418,13 +431,13 @@
     font-weight: bold;
 }
 
-/*enlarge effect when hover*/
+/*enlarge effect when hovering the container of the leaderboard*/
 .main-screenpg .leaderboardscreen .leaderboard-container .leaderboard-list .leaderboard-item:hover {
     transform: scale(1.05); 
     transition: 0.5s;
 }
 
-/*Resizing img of the placing */
+/*Resizing img of the placing photo*/
 .main-screenpg .leaderboardscreen .leaderboard-container .leaderboard-list .leaderboard-item .rank img{
     width: 65%;
     height: 65%;
@@ -436,7 +449,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /*move both horizontally and vertically,*/
     display: none;
     z-index: 1; /*shown at the front*/
 }
@@ -465,7 +478,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); /*move both horizontally and vertically,*/
     display: none;
     z-index: 1; /*shown at the front*/
 }
@@ -480,50 +493,53 @@
     /*rgb(65, 128, 255)*/
 }
 
+/*container to hold the 3 stars img, arranged at the center*/
 .main-screenpg .endgame-container #star-rating{
     justify-content: center;
     width: 100%;
     position: relative;
     top:-40px; /*nearer to signboard*/
-    display: none;
+    display: none; /*hidden until the function is called to display*/
 }
 
 /* CSS for zoom-in effect of stars */
-.zoom-in { /*this class is to be added to star rating later*/
+.zoom-in { /*this class is to be added to star rating later using js*/
     animation: zoomIn 0.5s forwards;
 }
 
 @keyframes zoomIn {
     from {
-        transform: scale(0);
+        transform: scale(0); 
         opacity: 0;
     }
     to {
-        transform: scale(1);
+        transform: scale(1); /*increase the size to default when gradually appearing*/
         opacity: 1;
     }
 }
 
+/*style of the individual star img*/
 .main-screenpg .endgame-container #star-rating img{
     width: 85px;
     height: 85px;
-
 }
 
+/*the container with the img text showing emojifantastic, placed at the center*/
 .main-screenpg .endgame-container .score-container .signboard{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 23%;
+    padding-left: 23%; /*the padding from both sides allow the img*/
     padding-right: 23%;
 }
 
-/*resizing completed text logo*/
+/*resizing emojifantastic text logo*/
 .main-screenpg .endgame-container .score-container .signboard img{
     width: 100%;
     height: 150px;
 }
 
+/*arranging to place at the center, containing name and score*/
 .main-screenpg .endgame-container .score-container .playerinfo{
     display: flex;
     align-items: center;
@@ -533,15 +549,17 @@
     font-size: 55px;
 }
 
+/*container for the two buttons tryagain and facebook*/
 .main-screenpg .endgame-container .score-container .option-button{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-evenly; /*placed at equal distance within the column*/
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /*if there is no space, push it down*/
     margin-top: 50px;
     margin-bottom: 70px;
 }
 
+/*styling of try again button*/
 .main-screenpg .endgame-container .score-container .option-button #try-again{
     background-color: rgb(0, 135, 0);
     font-weight: bolder;
@@ -553,12 +571,14 @@
     cursor: pointer; 
 }
 
+/*animation while cursor hovering*/
 .main-screenpg .endgame-container .score-container .option-button #try-again:hover{
     background-color: rgb(0, 80, 0);
     transition: 0.6s;
     transform: scale(1.1);
 }
 
+/*styling of facebook button*/
 .main-screenpg .endgame-container .score-container .option-button #facebook{
     background-color: rgb(10, 61, 215);
     color: rgb(255, 255, 255);
@@ -580,12 +600,14 @@
 /*STYLE FOR RESPONSIVE*/
 @media screen and (max-width:650px) {
     /*INDEX.HTML*/
+    /*makes it occupy entire column and arrange at center for logo*/
     .main-screenpg header .logo {
         width: 100%;
         display: flex;
         justify-content: center;
     }
 
+    /*nav bar occupy entire column and spaces them out evenly*/
     .main-screenpg header nav{
         width: 100%;
         display: flex;
@@ -597,19 +619,24 @@
     .main-screenpg .game-info-container{
         height: 115vh; /*to accomodate all the elements*/
     }
+
+    /*only the left container is needed, lightbulb picture removed*/
     .main-screenpg .game-intro-left{
         width: 98%; /*full screen*/
         margin-top: 3%; /*SPACING ABOVE*/
     }
 
+    /*the text img emoji charades*/
     .main-screenpg .game-intro-left img{
         width: 100%; /*only the left is wanted, expand full screen*/
     }
+
     /*no longer needs to be relative, emoji is being push down*/
     .main-screenpg .game-intro-left .lottiemainpg{ 
         position: static;
     }
-    /*remove the lightbulb as not needed in mobile*/
+
+    /*remove the lightbulb as not needed in mobile view*/
     .main-screenpg .game-info-container .game-intro-right{
         display: none;
     }
@@ -631,13 +658,20 @@
     .main-screenpg .ingame-screen .ingame-right{
         width: 100%;
     }
+
+    /*the container where question img is inserted into*/
     .main-screenpg .ingame-screen .ingame-left .question-display{
-        justify-content: flex-start; /*push to the left*/
+        justify-content: flex-start; /*push to the left corner, for visibility*/
     }
     /*the question image is much smaller to keep in container*/
     .main-screenpg .ingame-screen .ingame-left .question-display #qn-img{
         width: 5%;
         height: 3%;
+    }
+
+    /*leaderboard html*/
+    .main-screenpg .leaderboardscreen .leaderboard-container .leaderboard-list .leaderboard-item {
+        font-size: 30px; /*leaderboard text decrease size to fit in mobile*/
     }
 
     /*endgame html*/

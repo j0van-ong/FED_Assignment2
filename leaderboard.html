@@ -34,11 +34,11 @@
                 <a href="index.html">Home</a> <a id="currentpg" href="leaderboard.html">Leaderboard</a>
             </nav>
         </header>
-        <div id="loading-animation-leaderboard">
+        <div id="loading-animation-leaderboard"> <!--div for animation, hidden default-->
           <dotlottie-player src="https://lottie.host/6a9fba75-f120-4e0a-9d5f-95a4994ae53f/kI8NVyy2R4.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
         </div>
-        <div class="leaderboardscreen">
-            <div class="leaderboard-title">
+        <div class="leaderboardscreen"> <!--entire container for holding each top5 player container and the refresh btn, top5img text-->
+            <div class="leaderboard-title"> <!--container for refresh btn and top5 img text-->
               <img src="./Picture/leaderboard-top5.png" alt="Leaderboard Top 5">
               <button onclick="refreshLeaderboard()" id="refresh"> <!--button for refreshing api-->
                 <span class="material-symbols-outlined" style="margin: 0;"> <!--bootstrap reload icon-->
@@ -48,11 +48,11 @@
               </button>
             </div>
             <div class="leaderboard-container">
-                <ul class="leaderboard-list"> <!--container where all the sub container is contained to display the user leaderboard-->
+                <ul class="leaderboard-list"> <!--container where all the sub container is contained to display the user leaderboard, uses list as template-->
                   <li class="leaderboard-item" style="background-color: rgb(248, 73, 73);">
                     <span class="rank"><img src="./Picture/first-place.png" alt="1st-place"></span>
-                    <span class="game-name1" data-username=""></span> <!--data-username is data-attribute-->
-                    <span class="score1" data-score=""></span>
+                    <span class="game-name1" data-username=""></span> <!--data-username and score is data-attribute to store the info from restDB-->
+                    <span class="score1" data-score=""></span> <!--each tag of game-name{?} and score is arranged by increment, easier to loop thru and add-->
                     <dotlottie-player src="https://lottie.host/9e6f351e-41d7-4ac4-b544-ae231d12d2d8/VZF7ll30uo.json" background="transparent" speed="1" style="width: 13.5%; height: 13.5%;" loop autoplay></dotlottie-player>
                   </li>
                   <li class="leaderboard-item" style="background-color: rgb(83, 140, 255);">
